@@ -17,8 +17,8 @@ private int[][] matriz9 = new int[3][3];
 
 // Gran Matriz:
 private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
-                                              {matriz4, matriz5, matriz6},
-                                              {matriz7, matriz8, matriz9} };
+                                                   {matriz4, matriz5, matriz6},
+                                                   {matriz7, matriz8, matriz9} };
 
     public ventana() {
         initComponents();
