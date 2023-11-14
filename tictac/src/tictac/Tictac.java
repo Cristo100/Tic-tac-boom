@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package tictac;
 
-/**
- *
- * @author crist
- */
-public class Tictac {
 
-    /**
-     * @param args the command line arguments
-     */
+public class Tictac {
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        ventana v1 = new ventana();
+        
+        v1.setVisible(true);
     }
     
 }
