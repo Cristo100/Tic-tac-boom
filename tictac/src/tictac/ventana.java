@@ -19,9 +19,7 @@ private int[][] matriz9 = new int[3][3];
 private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
                                               {matriz4, matriz5, matriz6},
                                               {matriz7, matriz8, matriz9} };
-    
-    
-    
+
     public ventana() {
         initComponents();
     }
@@ -849,7 +847,7 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
                                             .addComponent(boto59, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(boto69, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1008,7 +1006,7 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
                             .addComponent(boto89, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto99, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto79, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botoreinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botosalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1121,12 +1119,14 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
     private void botoreinicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoreinicioActionPerformed
     for (int i = 0; i < granmatriz.length; i++) {
         for (int j = 0; j < granmatriz[i].length; j++) {
-            for (int k = 0; k < granmatriz[j].length; k++) {
-               for (int l = 0; l < granmatriz[k].length; l++) {
+            for (int k = 0; k < granmatriz[i][j].length; k++) {
+                for (int l = 0; l < granmatriz[i][j][k].length; l++) {
+                    granmatriz[i][j][k][l] = 0;
+                }
             }
-            granmatriz[i][j][k][l] = 0;
-        }}
-    
+        }
+    }
+
     boto1.setText("");
     boto2.setText("");
     boto3.setText("");
@@ -1136,7 +1136,7 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
     boto7.setText("");
     boto8.setText("");
     boto9.setText("");
-    turno=true;
+    turno = true;
     }//GEN-LAST:event_botoreinicioActionPerformed
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
