@@ -1,11 +1,13 @@
 
 package tictac;
 import javax.swing.*;
+import java.awt.*;
 import java.lang.reflect.Field;
 
 public class ventana extends javax.swing.JFrame {
 //Creacion de variables:
         boolean turno = true;
+        Color color_boton;
 
         //Creacion de matrices
         private int[][] matriz1 = new int[3][3];
@@ -34,7 +36,6 @@ public class ventana extends javax.swing.JFrame {
 //--------------------------
 // 1- verificacion de ganador:
 //--------------------------
-
 public void verificacion() {
     for (int i = 0; i < granmatriz.length; i++) {  // Verificar en las filas, columnas y diagonales de cada matriz pequeña
         for (int j = 0; j < granmatriz[i].length; j++) {
@@ -42,36 +43,32 @@ public void verificacion() {
             if (matriz_ganadora[i][j] == 0 && verifica_ganador(granmatriz[i][j])) {
                 matriz_ganadora[i][j] = turno ? 2 : 1; // Establecer el ganador en esta posición
                 System.out.println("Jugador " + (turno ? "O" : "X") + " ganó en la matriz: " + (i + 1) + "-" + (j + 1) + "!");
-            }
-        }
-    }
-    //ve si alguien gano definitivamente
-    if (verifica_ganador(matriz_ganadora)) {
-        resultados.setText((turno ? "O" : "X")+" Gano la partida");
-        return;
-    }
-}
-
-// Ganador en una matriz
-private boolean verifica_ganador(int[][] matriz) {
-    for (int i = 0; i < 3; i++) {
-        // Verificar filas y columnas
-        if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-            return true; // Hay un ganador en la fila i
-        }
-        if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-            return true; // Hay un ganador en la columna i
-        }
-    }
-    // Verificar diagonales
-    if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-        return true; // Hay un ganador en la diagonal principal
-    }
-    if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-        return true; // Hay un ganador en la diagonal secundaria
-    }
-    return false; // No hay ganador en esta matriz
-}
+            }}}
+            //ve si alguien gano definitivamente
+            if (verifica_ganador(matriz_ganadora)) {
+                resultados.setText((turno ? "O" : "X")+" Gano la partida");
+                return;
+            }}
+                    // Ganador en una matriz
+                        private boolean verifica_ganador(int[][] matriz) {
+                            for (int i = 0; i < 3; i++) {
+                                // Verificar filas y columnas
+                                if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
+                                    return true; 
+                                }
+                                if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
+                                    return true;
+                                }
+                            }
+                            // Verificar diagonales
+                            if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
+                                return true;
+                            }
+                            if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
+                                return true;
+                            }
+                            return false; 
+                        }
 
 //--------------------------
 // 2- sistema de reinicio:
@@ -82,13 +79,15 @@ private boolean verifica_ganador(int[][] matriz) {
             for (int j = 0; j < matriz_ganadora[i].length; j++) {
                 matriz_ganadora[i][j] = 0;
             }}
-        //Todos los botones en blanco
+        //Todos los botones en blanco+
         Field[] fields = getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.getType() == JButton.class && field.getName().startsWith("boto")) {   //aqui se pregunta como comienzan los botones que se quiere modificar.
                 try {
                     JButton boton = (JButton) field.get(this);
                     boton.setText("");
+                    boton.setBackground(Color.WHITE);
+                    
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }}}
@@ -102,24 +101,29 @@ private boolean verifica_ganador(int[][] matriz) {
                 }}}}
     }
 
-    
-    
 //--------------------------
 // 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
 //--------------------------
-        public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
-            String valor;
-            if (matriz[x][y] == 0) {
-                if (turno) {matriz[x][y] = 1;} else {matriz[x][y] = 2;}
-                valor = (turno) ? "X" : "O";
-                button.setText(valor);
-                turno = !turno;
+ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
+    if (matriz[x][y] == 0) {
+        if (turno) {matriz[x][y] = 1;
+            color_boton = Color.RED;
+        } else {
+            matriz[x][y] = 2;
+            color_boton = Color.BLUE; 
+        }
+        button.setBackground(color_boton);
+        turno = !turno;
 
-                //llamada de otros metodos.
-                verificacion();
-
-        }}
-
+        // Llamada de otros métodos.
+        verificacion();
+    }
+}
+        
+//---------------------------------
+        
+        
+        
 
     public ventana() {
         initComponents();
