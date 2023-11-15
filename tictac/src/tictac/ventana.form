@@ -28,12 +28,6 @@
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
-                      <Component id="botoreinicio" min="-2" pref="104" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="botosalir" min="-2" pref="104" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -292,6 +286,17 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="resultados" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="reinicioboton" min="-2" pref="104" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="salirboton" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace pref="215" max="32767" attributes="0"/>
           </Group>
@@ -508,10 +513,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="resultados" pref="25" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botoreinicio" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="botosalir" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="reinicioboton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="salirboton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -604,20 +611,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boto9ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botoreinicio">
+    <Component class="javax.swing.JButton" name="reinicioboton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reinicio"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoreinicioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reiniciobotonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botosalir">
+    <Component class="javax.swing.JButton" name="salirboton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botosalirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirbotonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boto12">
@@ -979,6 +986,12 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boto59ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="resultados">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="-JUGANDO-"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

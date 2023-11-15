@@ -1,51 +1,124 @@
 
 package tictac;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.lang.reflect.Field;
 
 public class ventana extends javax.swing.JFrame {
-    boolean turno = true;
-    int numero = 0;
+//Creacion de variables:
+        boolean turno = true;
 
-//Creacion de matrices
-private int[][] matriz1 = new int[3][3];
-private int[][] matriz2 = new int[3][3];
-private int[][] matriz3 = new int[3][3];
-private int[][] matriz4 = new int[3][3];
-private int[][] matriz5 = new int[3][3];
-private int[][] matriz6 = new int[3][3];
-private int[][] matriz7 = new int[3][3];
-private int[][] matriz8 = new int[3][3];
-private int[][] matriz9 = new int[3][3];
-
-//  Creacion de gran matriz (conformado por las matrices pequeñas)
-private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
-                                                    {matriz4, matriz5, matriz6},
-                                                    {matriz7, matriz8, matriz9} };
-
-public void verificacion(){
-    System.out.println(numero);
-    numero= numero+1;
-}
-
-//Metodo para imprimir X o O por turnos y registrar el resultado en las matrices.
-//Este debe ir al final de la lista de metodos debido a que se debe analisar el juego cada vez
-//que se hace un turno.
-public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
-    String valor;
-    if (matriz[x][y] == 0) {
-        if (turno) {matriz[x][y] = 1;} else {matriz[x][y] = 2;}
-        valor = (turno) ? "X" : "O";
-        button.setText(valor);
-        turno = !turno;
+        //Creacion de matrices
+        private int[][] matriz1 = new int[3][3];
+        private int[][] matriz2 = new int[3][3];
+        private int[][] matriz3 = new int[3][3];
+        private int[][] matriz4 = new int[3][3];
+        private int[][] matriz5 = new int[3][3];
+        private int[][] matriz6 = new int[3][3];
+        private int[][] matriz7 = new int[3][3];
+        private int[][] matriz8 = new int[3][3];
+        private int[][] matriz9 = new int[3][3];
         
-        //llamada de otros metodos.
-        verificacion();
-        return true;
-    }else{return false;}
+        //ver en que matrices ya hay un ganador:
+        private int[][] matriz_ganadora = new int[3][3];
+
+        
+        //  Creacion de gran matriz (conformado por las matrices pequeñas)
+        private int[][][][] granmatriz ={      {matriz1, matriz2, matriz3},
+                                                            {matriz4, matriz5, matriz6},
+                                                            {matriz7, matriz8, matriz9}     };
+
+        
+        
+//METODOS:
+        
+//--------------------------
+// 1- verificacion de ganador:
+//--------------------------
+
+public void verificacion() {
+    for (int i = 0; i < granmatriz.length; i++) {  // Verificar en las filas, columnas y diagonales de cada matriz pequeña
+        for (int j = 0; j < granmatriz[i].length; j++) {
+            // Verificar solo si no hay un ganador en este juego
+            if (matriz_ganadora[i][j] == 0 && verifica_ganador(granmatriz[i][j])) {
+                matriz_ganadora[i][j] = turno ? 2 : 1; // Establecer el ganador en esta posición
+                System.out.println("Jugador " + (turno ? "O" : "X") + " ganó en la matriz: " + (i + 1) + "-" + (j + 1) + "!");
+            }
+        }
+    }
+    //ve si alguien gano definitivamente
+    if (verifica_ganador(matriz_ganadora)) {
+        resultados.setText((turno ? "O" : "X")+" Gano la partida");
+        return;
+    }
 }
 
+// Ganador en una matriz
+private boolean verifica_ganador(int[][] matriz) {
+    for (int i = 0; i < 3; i++) {
+        // Verificar filas y columnas
+        if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
+            return true; // Hay un ganador en la fila i
+        }
+        if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
+            return true; // Hay un ganador en la columna i
+        }
+    }
+    // Verificar diagonales
+    if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
+        return true; // Hay un ganador en la diagonal principal
+    }
+    if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
+        return true; // Hay un ganador en la diagonal secundaria
+    }
+    return false; // No hay ganador en esta matriz
+}
 
+//--------------------------
+// 2- sistema de reinicio:
+//--------------------------
+    private void reinicio_total() {
+        //Ganadores
+        for (int i = 0; i < matriz_ganadora.length; i++) {
+            for (int j = 0; j < matriz_ganadora[i].length; j++) {
+                matriz_ganadora[i][j] = 0;
+            }}
+        //Todos los botones en blanco
+        Field[] fields = getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getType() == JButton.class && field.getName().startsWith("boto")) {   //aqui se pregunta como comienzan los botones que se quiere modificar.
+                try {
+                    JButton boton = (JButton) field.get(this);
+                    boton.setText("");
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }}}
+        
+        //las matrices de resultados de vuelta a 0:
+        for (int i = 0; i < granmatriz.length; i++) {
+        for (int j = 0; j < granmatriz[i].length; j++) {
+            for (int k = 0; k < granmatriz[i][j].length; k++) {
+                for (int l = 0; l < granmatriz[i][j][k].length; l++) {
+                    granmatriz[i][j][k][l] = 0;
+                }}}}
+    }
 
+    
+    
+//--------------------------
+// 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
+//--------------------------
+        public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
+            String valor;
+            if (matriz[x][y] == 0) {
+                if (turno) {matriz[x][y] = 1;} else {matriz[x][y] = 2;}
+                valor = (turno) ? "X" : "O";
+                button.setText(valor);
+                turno = !turno;
+
+                //llamada de otros metodos.
+                verificacion();
+
+        }}
 
 
     public ventana() {
@@ -66,8 +139,8 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
         boto7 = new javax.swing.JButton();
         boto8 = new javax.swing.JButton();
         boto9 = new javax.swing.JButton();
-        botoreinicio = new javax.swing.JButton();
-        botosalir = new javax.swing.JButton();
+        reinicioboton = new javax.swing.JButton();
+        salirboton = new javax.swing.JButton();
         boto12 = new javax.swing.JButton();
         boto22 = new javax.swing.JButton();
         boto32 = new javax.swing.JButton();
@@ -140,6 +213,7 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
         boto39 = new javax.swing.JButton();
         boto49 = new javax.swing.JButton();
         boto59 = new javax.swing.JButton();
+        resultados = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic Tac Toe");
@@ -221,17 +295,17 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
             }
         });
 
-        botoreinicio.setText("Reinicio");
-        botoreinicio.addActionListener(new java.awt.event.ActionListener() {
+        reinicioboton.setText("Reinicio");
+        reinicioboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botoreinicioActionPerformed(evt);
+                reiniciobotonActionPerformed(evt);
             }
         });
 
-        botosalir.setText("Salir");
-        botosalir.addActionListener(new java.awt.event.ActionListener() {
+        salirboton.setText("Salir");
+        salirboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botosalirActionPerformed(evt);
+                salirbotonActionPerformed(evt);
             }
         });
 
@@ -667,6 +741,9 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
             }
         });
 
+        resultados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        resultados.setText("-JUGANDO-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -674,11 +751,6 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
-                        .addComponent(botoreinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botosalir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -873,7 +945,15 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(boto59, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto69, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(boto69, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(reinicioboton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(salirboton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1033,10 +1113,12 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
                             .addComponent(boto89, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto99, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto79, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botoreinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botosalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reinicioboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salirboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1045,13 +1127,13 @@ public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botosalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botosalirActionPerformed
+    private void salirbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbotonActionPerformed
         //Creacion ventana emergente con JOptionPane
         int opcion = JOptionPane.showConfirmDialog(this, "¿Cerrar el juego?", "Confirmación", JOptionPane.YES_NO_OPTION);
         if (opcion == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
-    }//GEN-LAST:event_botosalirActionPerformed
+    }//GEN-LAST:event_salirbotonActionPerformed
 
     private void boto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto1ActionPerformed
         coordenada(boto1,matriz1,0,0);
@@ -1089,28 +1171,12 @@ coordenada(boto8,matriz1,1,2);
 coordenada(boto9,matriz1,2,2);
     }//GEN-LAST:event_boto9ActionPerformed
 
-    private void botoreinicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoreinicioActionPerformed
-    for (int i = 0; i < granmatriz.length; i++) {
-        for (int j = 0; j < granmatriz[i].length; j++) {
-            for (int k = 0; k < granmatriz[i][j].length; k++) {
-                for (int l = 0; l < granmatriz[i][j][k].length; l++) {
-                    granmatriz[i][j][k][l] = 0;
-                }
-            }
-        }
-    }
+    private void reiniciobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciobotonActionPerformed
 
-    boto1.setText("");
-    boto2.setText("");
-    boto3.setText("");
-    boto4.setText("");
-    boto5.setText("");
-    boto6.setText("");
-    boto7.setText("");
-    boto8.setText("");
-    boto9.setText("");
-    turno = true;
-    }//GEN-LAST:event_botoreinicioActionPerformed
+//reinicio de matrices de la gran matriz (El juego completo)
+        reinicio_total();
+        turno = true;
+    }//GEN-LAST:event_reiniciobotonActionPerformed
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
 coordenada(boto12,matriz2,0,0);
@@ -1510,9 +1576,10 @@ coordenada(boto59,matriz9,1,1);
     private javax.swing.JButton boto97;
     private javax.swing.JButton boto98;
     private javax.swing.JButton boto99;
-    private javax.swing.JButton botoreinicio;
-    private javax.swing.JButton botosalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton reinicioboton;
+    private javax.swing.JLabel resultados;
+    private javax.swing.JButton salirboton;
     // End of variables declaration//GEN-END:variables
 }
