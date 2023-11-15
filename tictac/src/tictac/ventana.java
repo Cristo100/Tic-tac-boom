@@ -8,32 +8,27 @@ public class ventana extends javax.swing.JFrame {
         boolean turno = true;
         Color color_boton;
 
-        //Creacion de matrices
-        gatito matriz1 = new gatito();
-        gatito matriz2 = new gatito();
-        gatito matriz3 = new gatito();
-        gatito matriz4= new gatito();
-        gatito matriz5 = new gatito();
-        gatito matriz6 = new gatito();
-        gatito matriz7 = new gatito();
-        gatito matriz8 = new gatito();
-        gatito matriz9 = new gatito();
-        
-        
+        //Creacion de matrices:
+        private int[][] matriz1 = new int[3][3];
+        private int[][] matriz2 = new int[3][3];
+        private int[][] matriz3 = new int[3][3];
+        private int[][] matriz4 = new int[3][3];
+        private int[][] matriz5 = new int[3][3];
+        private int[][] matriz6 = new int[3][3];
+        private int[][] matriz7 = new int[3][3];
+        private int[][] matriz8 = new int[3][3];
+        private int[][] matriz9 = new int[3][3];
         
         //ver en que matrices ya hay un ganador:
         private int[][] matriz_ganadora = new int[3][3];
 
         
-    gatito[][] gatitos = {
-        {matriz1, matriz2, matriz3},
-        {matriz4, matriz5, matriz6},
-        {matriz7, matriz8, matriz9}
-    };
+        //  Creacion de gran matriz (conformado por las matrices pequeñas)
+        private int[][][][] granmatriz ={      {matriz1, matriz2, matriz3},
+                                                            {matriz4, matriz5, matriz6},
+                                                            {matriz7, matriz8, matriz9}     };
 
-    gran_matriz granMatriz = new gran_matriz(gatitos);
-}
-
+        
 //METODOS:
         
 //--------------------------
@@ -107,11 +102,13 @@ public void verificacion() {
 // 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
 //--------------------------
  public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
-    if (verifica_ganador(matriz_ganadora)) {
+    // Verifica si ya hay un ganador en esta matriz
+    if (matriz_ganadora[x][y] != 0) {
         return;
     }
-     if (matriz[x][y] == 0) {
-        if (turno) {matriz[x][y] = 1;
+    if (matriz[x][y] == 0) {
+        if (turno) {
+            matriz[x][y] = 1;
             color_boton = Color.RED;
         } else {
             matriz[x][y] = 2;
@@ -124,6 +121,7 @@ public void verificacion() {
         verificacion();
     }
 }
+
         
 //---------------------------------
     public ventana() {
