@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package tictac;
 
-/**
- *
- * @author crist
- */
 public class gran_matriz {
-    
+    private gatito[][] matriz;
+
+    public gran_matriz(gatito[][] gatitos) {
+        matriz = gatitos;
+    }
+
+    public gatito[][] getMatriz() {
+        return matriz;
+    }
 }

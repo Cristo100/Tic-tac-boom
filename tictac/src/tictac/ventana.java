@@ -9,15 +9,15 @@ public class ventana extends javax.swing.JFrame {
         Color color_boton;
 
         //Creacion de matrices
-        gatito matriz1 = new gatito("matriz1");
-        gatito matriz2 = new gatito("matriz1");
-        gatito matriz3 = new gatito("matriz1");
-        gatito matriz4= new gatito("matriz1");
-        gatito matriz5 = new gatito("matriz1");
-        gatito matriz6 = new gatito("matriz1");
-        gatito matriz7 = new gatito("matriz1");
-        gatito matriz8 = new gatito("matriz1");
-        gatito matriz9 = new gatito("matriz1");
+        gatito matriz1 = new gatito();
+        gatito matriz2 = new gatito();
+        gatito matriz3 = new gatito();
+        gatito matriz4= new gatito();
+        gatito matriz5 = new gatito();
+        gatito matriz6 = new gatito();
+        gatito matriz7 = new gatito();
+        gatito matriz8 = new gatito();
+        gatito matriz9 = new gatito();
         
         
         
@@ -25,10 +25,14 @@ public class ventana extends javax.swing.JFrame {
         private int[][] matriz_ganadora = new int[3][3];
 
         
-        //  Creacion de gran matriz (conformado por las matrices pequeñas)
-        private int[][][][] granmatriz ={      {matriz1, matriz2, matriz3},
-                                                            {matriz4, matriz5, matriz6},
-                                                            {matriz7, matriz8, matriz9}     };
+    gatito[][] gatitos = {
+        {matriz1, matriz2, matriz3},
+        {matriz4, matriz5, matriz6},
+        {matriz7, matriz8, matriz9}
+    };
+
+    gran_matriz granMatriz = new gran_matriz(gatitos);
+}
 
 //METODOS:
         
