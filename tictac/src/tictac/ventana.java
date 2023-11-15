@@ -4,7 +4,9 @@ import javax.swing.JOptionPane;
 
 public class ventana extends javax.swing.JFrame {
     boolean turno = true;
-    
+    int numero = 0;
+
+//Creacion de matrices
 private int[][] matriz1 = new int[3][3];
 private int[][] matriz2 = new int[3][3];
 private int[][] matriz3 = new int[3][3];
@@ -15,15 +17,40 @@ private int[][] matriz7 = new int[3][3];
 private int[][] matriz8 = new int[3][3];
 private int[][] matriz9 = new int[3][3];
 
-// Gran Matriz:
+//  Creacion de gran matriz (conformado por las matrices pequeñas)
 private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
-                                                   {matriz4, matriz5, matriz6},
-                                                   {matriz7, matriz8, matriz9} };
+                                                    {matriz4, matriz5, matriz6},
+                                                    {matriz7, matriz8, matriz9} };
+
+public void verificacion(){
+    System.out.println(numero);
+    numero= numero+1;
+}
+
+//Metodo para imprimir X o O por turnos y registrar el resultado en las matrices.
+//Este debe ir al final de la lista de metodos debido a que se debe analisar el juego cada vez
+//que se hace un turno.
+public boolean coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
+    String valor;
+    if (matriz[x][y] == 0) {
+        if (turno) {matriz[x][y] = 1;} else {matriz[x][y] = 2;}
+        valor = (turno) ? "X" : "O";
+        button.setText(valor);
+        turno = !turno;
+        
+        //llamada de otros metodos.
+        verificacion();
+        return true;
+    }else{return false;}
+}
+
+
+
+
 
     public ventana() {
         initComponents();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1027,93 +1054,39 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
     }//GEN-LAST:event_botosalirActionPerformed
 
     private void boto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto1ActionPerformed
-        String valor;
-        if(matriz1[0][0] == 0){
-            if (turno==true){matriz1[0][0] = 1;} else{matriz1[0][0] = 2;}
-            if(matriz1[0][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto1.setText(valor);
-            turno = !turno;}
+        coordenada(boto1,matriz1,0,0);
     }//GEN-LAST:event_boto1ActionPerformed
 
     private void boto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto2ActionPerformed
-        String valor;
-        if(matriz1[1][0] == 0){
-            if (turno==true){matriz1[1][0] = 1;} else{matriz1[1][0] = 2;}
-            if(matriz1[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto2.setText(valor);
-            turno = !turno;}
+        coordenada(boto2,matriz1,1,0);
     }//GEN-LAST:event_boto2ActionPerformed
 
     private void boto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto3ActionPerformed
-        String valor;
-        if(matriz1[2][0] == 0){
-            if (turno==true){matriz1[2][0] = 1;} else{matriz1[2][0] = 2;}
-            if(matriz1[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto3.setText(valor);
-            turno = !turno;}
+coordenada(boto3,matriz1,2,0);
     }//GEN-LAST:event_boto3ActionPerformed
 
     private void boto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto4ActionPerformed
-        String valor;
-        if(matriz1[0][1] == 0){
-            if (turno==true){matriz1[0][1] = 1;} else{matriz1[0][1] = 2;}
-            if(matriz1[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto4.setText(valor);
-            turno = !turno;}
+coordenada(boto4,matriz1,0,1);
     }//GEN-LAST:event_boto4ActionPerformed
 
     private void boto5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto5ActionPerformed
-        String valor;
-        if(matriz1[1][1] == 0){
-            if (turno==true){matriz1[1][1] = 1;} else{matriz1[1][1] = 2;}
-            if(matriz1[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto5.setText(valor);
-            turno = !turno;}
+coordenada(boto5,matriz1,1,1);
     }//GEN-LAST:event_boto5ActionPerformed
 
     private void boto6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto6ActionPerformed
-        String valor;
-        if(matriz1[2][1] == 0){
-            if (turno==true){matriz1[2][1] = 1;} else{matriz1[2][1] = 2;}
-            if(matriz1[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto6.setText(valor);
-            turno = !turno;}
+coordenada(boto6,matriz1,2,1);
     }//GEN-LAST:event_boto6ActionPerformed
 
     private void boto7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto7ActionPerformed
-        String valor;
-        if(matriz1[0][2] == 0){
-            if (turno==true){matriz1[0][2] = 1;} else{matriz1[0][2] = 2;}
-            if(matriz1[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto7.setText(valor);
-            turno = !turno;}
+coordenada(boto7,matriz1,0,2);
     }//GEN-LAST:event_boto7ActionPerformed
 
     private void boto8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto8ActionPerformed
-        String valor;
-        if(matriz1[1][2] == 0){
-            if (turno==true){matriz1[1][2] = 1;} else{matriz1[1][2] = 2;}
-            if(matriz1[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto8.setText(valor);
-            turno = !turno;}
+coordenada(boto8,matriz1,1,2);
     }//GEN-LAST:event_boto8ActionPerformed
 
     private void boto9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto9ActionPerformed
-        String valor;
-        if(matriz1[2][2] == 0){
-            if (turno==true){matriz1[2][2] = 1;} else{matriz1[2][2] = 2;}
-            if(matriz1[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto9.setText(valor);
-            turno = !turno;}
+coordenada(boto9,matriz1,2,2);
     }//GEN-LAST:event_boto9ActionPerformed
 
     private void botoreinicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoreinicioActionPerformed
@@ -1140,729 +1113,291 @@ private int[][][][] granmatriz ={{matriz1, matriz2, matriz3},
     }//GEN-LAST:event_botoreinicioActionPerformed
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
-        String valor;
-        if(matriz2[0][0] == 0){
-            if (turno==true){matriz2[0][0] = 1;} else{matriz2[0][0] = 2;}
-            if(matriz2[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto12.setText(valor);
-            turno = !turno;}
+coordenada(boto12,matriz2,0,0);
     }//GEN-LAST:event_boto12ActionPerformed
 
     private void boto22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto22ActionPerformed
-        String valor;
-        if(matriz2[1][0] == 0){
-            if (turno==true){matriz2[1][0] = 1;} else{matriz2[1][0] = 2;}
-            if(matriz2[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto22.setText(valor);
-            turno = !turno;}
+coordenada(boto22,matriz2,1,0);
     }//GEN-LAST:event_boto22ActionPerformed
 
     private void boto32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto32ActionPerformed
-        String valor;
-        if(matriz2[2][0] == 0){
-            if (turno==true){matriz2[2][0] = 1;} else{matriz2[2][0] = 2;}
-            if(matriz2[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto32.setText(valor);
-            turno = !turno;}
+coordenada(boto32,matriz2,2,0);
     }//GEN-LAST:event_boto32ActionPerformed
 
     private void boto42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto42ActionPerformed
-        String valor;
-        if(matriz2[0][1] == 0){
-            if (turno==true){matriz1[0][1] = 1;} else{matriz2[0][1] = 2;}
-            if(matriz2[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto42.setText(valor);
-            turno = !turno;}
+coordenada(boto42,matriz2,0,1);
     }//GEN-LAST:event_boto42ActionPerformed
 
     private void boto52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto52ActionPerformed
-        String valor;
-        if(matriz2[1][1] == 0){
-            if (turno==true){matriz2[1][1] = 1;} else{matriz2[1][1] = 2;}
-            if(matriz2[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto52.setText(valor);
-            turno = !turno;}
+coordenada(boto52,matriz2,1,1);
     }//GEN-LAST:event_boto52ActionPerformed
 
     private void boto62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto62ActionPerformed
-        String valor;
-        if(matriz2[2][1] == 0){
-            if (turno==true){matriz2[2][1] = 1;} else{matriz2[2][1] = 2;}
-            if(matriz1[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto62.setText(valor);
-            turno = !turno;}
+coordenada(boto62,matriz2,2,1);
     }//GEN-LAST:event_boto62ActionPerformed
 
     private void boto72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto72ActionPerformed
-        String valor;
-        if(matriz2[0][2] == 0){
-            if (turno==true){matriz2[0][2] = 1;} else{matriz2[0][2] = 2;}
-            if(matriz2[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto72.setText(valor);
-            turno = !turno;}
+coordenada(boto72,matriz2,0 ,2);
     }//GEN-LAST:event_boto72ActionPerformed
 
     private void boto82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto82ActionPerformed
-        String valor;
-        if(matriz2[1][2] == 0){
-            if (turno==true){matriz2[1][2] = 1;} else{matriz2[1][2] = 2;}
-            if(matriz1[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto82.setText(valor);
-            turno = !turno;}
+coordenada(boto82,matriz2,1,2);
     }//GEN-LAST:event_boto82ActionPerformed
 
     private void boto92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto92ActionPerformed
-        String valor;
-        if(matriz2[2][2] == 0){
-            if (turno==true){matriz2[2][2] = 1;} else{matriz2[2][2] = 2;}
-            if(matriz1[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto92.setText(valor);
-            turno = !turno;}
+coordenada(boto92,matriz2,2,2);
     }//GEN-LAST:event_boto92ActionPerformed
 
     private void boto23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto23ActionPerformed
-        String valor;
-        if(matriz3[1][0] == 0){
-            if (turno==true){matriz3[1][0] = 1;} else{matriz3[1][0] = 2;}
-            if(matriz1[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto23.setText(valor);
-            turno = !turno;}
+coordenada(boto23,matriz3,1,0);
     }//GEN-LAST:event_boto23ActionPerformed
 
     private void boto33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto33ActionPerformed
-        String valor;
-        if(matriz3[2][0] == 0){
-            if (turno==true){matriz3[2][0] = 1;} else{matriz3[2][0] = 2;}
-            if(matriz3[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto33.setText(valor);
-            turno = !turno;}
+coordenada(boto33,matriz3,2,0);
     }//GEN-LAST:event_boto33ActionPerformed
 
     private void boto43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto43ActionPerformed
-        String valor;
-        if(matriz3[0][1] == 0){
-            if (turno==true){matriz3[0][1] = 1;} else{matriz3[0][1] = 2;}
-            if(matriz3[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto43.setText(valor);
-            turno = !turno;}
+coordenada(boto43,matriz3,0,1);
     }//GEN-LAST:event_boto43ActionPerformed
 
     private void boto53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto53ActionPerformed
-        String valor;
-        if(matriz3[1][1] == 0){
-            if (turno==true){matriz3[1][1] = 1;} else{matriz3[1][1] = 2;}
-            if(matriz3[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto53.setText(valor);
-            turno = !turno;}
+coordenada(boto53,matriz3,1,1);
     }//GEN-LAST:event_boto53ActionPerformed
 
     private void boto63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto63ActionPerformed
-        String valor;
-        if(matriz3[2][1] == 0){
-            if (turno==true){matriz3[2][1] = 1;} else{matriz3[2][1] = 2;}
-            if(matriz3[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto63.setText(valor);
-            turno = !turno;}
+coordenada(boto63,matriz3,2,1);
     }//GEN-LAST:event_boto63ActionPerformed
 
     private void boto73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto73ActionPerformed
-        String valor;
-        if(matriz3[0][2] == 0){
-            if (turno==true){matriz3[0][2] = 1;} else{matriz3[0][2] = 2;}
-            if(matriz3[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto73.setText(valor);
-            turno = !turno;}
+coordenada(boto73,matriz3,0,2);
     }//GEN-LAST:event_boto73ActionPerformed
 
     private void boto83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto83ActionPerformed
-        String valor;
-        if(matriz3[1][2] == 0){
-            if (turno==true){matriz3[1][2] = 1;} else{matriz3[1][2] = 2;}
-            if(matriz3[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto83.setText(valor);
-            turno = !turno;}
+coordenada(boto83,matriz3,1,2);
     }//GEN-LAST:event_boto83ActionPerformed
 
     private void boto93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto93ActionPerformed
-        String valor;
-        if(matriz3[2][2] == 0){
-            if (turno==true){matriz3[2][2] = 1;} else{matriz3[2][2] = 2;}
-            if(matriz3[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto93.setText(valor);
-            turno = !turno;}
+coordenada(boto93,matriz3,2,2);
     }//GEN-LAST:event_boto93ActionPerformed
 
     private void boto13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto13ActionPerformed
-        String valor;
-        if(matriz3[0][0] == 0){
-            if (turno==true){matriz3[0][0] = 1;} else{matriz3[0][0] = 2;}
-            if(matriz2[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto13.setText(valor);
-            turno = !turno;}
+coordenada(boto13,matriz3,0,0);
     }//GEN-LAST:event_boto13ActionPerformed
 
     private void boto24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto24ActionPerformed
-        String valor;
-        if(matriz4[1][0] == 0){
-            if (turno==true){matriz4[1][0] = 1;} else{matriz4[1][0] = 2;}
-            if(matriz4[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto24.setText(valor);
-            turno = !turno;}
-
+coordenada(boto24,matriz4,1,0);
     }//GEN-LAST:event_boto24ActionPerformed
 
     private void boto34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto34ActionPerformed
-        String valor;
-        if(matriz4[2][0] == 0){
-            if (turno==true){matriz4[2][0] = 1;} else{matriz4[2][0] = 2;}
-            if(matriz4[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto34.setText(valor);
-            turno = !turno;}
-
+coordenada(boto34,matriz4,2,0);
     }//GEN-LAST:event_boto34ActionPerformed
 
     private void boto44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto44ActionPerformed
-        String valor;
-        if(matriz4[0][1] == 0){
-            if (turno==true){matriz4[0][1] = 1;} else{matriz4[0][1] = 2;}
-            if(matriz4[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto44.setText(valor);
-            turno = !turno;}
+coordenada(boto44,matriz4,0,1);
     }//GEN-LAST:event_boto44ActionPerformed
 
     private void boto54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto54ActionPerformed
-        String valor;
-        if(matriz4[1][1] == 0){
-            if (turno==true){matriz4[1][1] = 1;} else{matriz4[1][1] = 2;}
-            if(matriz4[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto54.setText(valor);
-            turno = !turno;}
+coordenada(boto54,matriz4,1,1);
     }//GEN-LAST:event_boto54ActionPerformed
 
     private void boto64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto64ActionPerformed
-        String valor;
-        if(matriz4[2][1] == 0){
-            if (turno==true){matriz4[2][1] = 1;} else{matriz4[2][1] = 2;}
-            if(matriz4[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto64.setText(valor);
-            turno = !turno;}
-
+coordenada(boto64,matriz4,2,1);
     }//GEN-LAST:event_boto64ActionPerformed
 
     private void boto74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto74ActionPerformed
-        String valor;
-        if(matriz4[0][2] == 0){
-            if (turno==true){matriz4[0][2] = 1;} else{matriz4[0][2] = 2;}
-            if(matriz4[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto74.setText(valor);
-            turno = !turno;}
+coordenada(boto74,matriz4,0,2);
     }//GEN-LAST:event_boto74ActionPerformed
 
     private void boto84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto84ActionPerformed
-        String valor;
-        if(matriz4[1][2] == 0){
-            if (turno==true){matriz4[1][2] = 1;} else{matriz4[1][2] = 2;}
-            if(matriz4[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto84.setText(valor);
-            turno = !turno;}
+coordenada(boto84,matriz4,1,2);
     }//GEN-LAST:event_boto84ActionPerformed
 
     private void boto94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto94ActionPerformed
-        String valor;
-        if(matriz4[2][2] == 0){
-            if (turno==true){matriz4[2][2] = 1;} else{matriz4[2][2] = 2;}
-            if(matriz4[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto94.setText(valor);
-            turno = !turno;}
+coordenada(boto94,matriz4,2,2);
     }//GEN-LAST:event_boto94ActionPerformed
 
     private void boto14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto14ActionPerformed
-        String valor;
-        if(matriz4[0][0] == 0){
-            if (turno==true){matriz4[0][0] = 1;} else{matriz4[0][0] = 2;}
-            if(matriz4[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto14.setText(valor);
-            turno = !turno;}
-
+coordenada(boto14,matriz4,0,0);
     }//GEN-LAST:event_boto14ActionPerformed
 
     private void boto75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto75ActionPerformed
-        String valor;
-        if(matriz5[0][2] == 0){
-            if (turno==true){matriz5[0][2] = 1;} else{matriz5[0][2] = 2;}
-            if(matriz5[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto75.setText(valor);
-            turno = !turno;}
+coordenada(boto75,matriz5,0,2);
     }//GEN-LAST:event_boto75ActionPerformed
 
     private void boto85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto85ActionPerformed
-        String valor;
-        if(matriz5[1][2] == 0){
-            if (turno==true){matriz5[1][2] = 1;} else{matriz5[1][2] = 2;}
-            if(matriz5[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto85.setText(valor);
-            turno = !turno;}
+coordenada(boto85,matriz5,1,2);
     }//GEN-LAST:event_boto85ActionPerformed
 
     private void boto95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto95ActionPerformed
-        String valor;
-        if(matriz5[2][2] == 0){
-            if (turno==true){matriz5[2][2] = 1;} else{matriz5[2][2] = 2;}
-            if(matriz5[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto95.setText(valor);
-            turno = !turno;}
+coordenada(boto95,matriz5,2,2);
     }//GEN-LAST:event_boto95ActionPerformed
 
     private void boto15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto15ActionPerformed
-        String valor;
-        if(matriz5[0][0] == 0){
-            if (turno==true){matriz5[0][0] = 1;} else{matriz5[0][0] = 2;}
-            if(matriz5[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto15.setText(valor);
-            turno = !turno;}
+coordenada(boto15,matriz5,0,0);
     }//GEN-LAST:event_boto15ActionPerformed
 
     private void boto25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto25ActionPerformed
-        String valor;
-        if(matriz5[1][0] == 0){
-            if (turno==true){matriz5[1][0] = 1;} else{matriz5[1][0] = 2;}
-            if(matriz5[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto25.setText(valor);
-            turno = !turno;}
+coordenada(boto25,matriz5,1,0);
     }//GEN-LAST:event_boto25ActionPerformed
 
     private void boto35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto35ActionPerformed
-        String valor;
-        if(matriz5[2][0] == 0){
-            if (turno==true){matriz5[2][0] = 1;} else{matriz5[2][0] = 2;}
-            if(matriz5[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto35.setText(valor);
-            turno = !turno;}
+coordenada(boto35,matriz5,2,0);
     }//GEN-LAST:event_boto35ActionPerformed
 
     private void boto45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto45ActionPerformed
-        String valor;
-        if(matriz5[0][1] == 0){
-            if (turno==true){matriz5[0][1] = 1;} else{matriz5[0][1] = 2;}
-            if(matriz5[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto45.setText(valor);
-            turno = !turno;}
+coordenada(boto45,matriz5,0,1);
     }//GEN-LAST:event_boto45ActionPerformed
 
     private void boto55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto55ActionPerformed
-        String valor;
-        if(matriz5[1][1] == 0){
-            if (turno==true){matriz5[1][1] = 1;} else{matriz5[1][1] = 2;}
-            if(matriz5[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto55.setText(valor);
-            turno = !turno;}
+coordenada(boto55,matriz5,1,1);
     }//GEN-LAST:event_boto55ActionPerformed
 
     private void boto65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto65ActionPerformed
-        String valor;
-        if(matriz5[2][1] == 0){
-            if (turno==true){matriz5[2][1] = 1;} else{matriz5[2][1] = 2;}
-            if(matriz5[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto65.setText(valor);
-            turno = !turno;}
+coordenada(boto65,matriz5,2,1);
     }//GEN-LAST:event_boto65ActionPerformed
 
     private void boto66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto66ActionPerformed
-        String valor;
-        if(matriz6[2][1] == 0){
-            if (turno==true){matriz6[2][1] = 1;} else{matriz6[2][1] = 2;}
-            if(matriz6[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto66.setText(valor);
-            turno = !turno;}
+coordenada(boto66,matriz6,2,1);
     }//GEN-LAST:event_boto66ActionPerformed
 
     private void boto76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto76ActionPerformed
-        String valor;
-        if(matriz6[0][2] == 0){
-            if (turno==true){matriz6[0][2] = 1;} else{matriz6[0][2] = 2;}
-            if(matriz6[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto76.setText(valor);
-            turno = !turno;}
+coordenada(boto76,matriz6,0,2);
     }//GEN-LAST:event_boto76ActionPerformed
 
     private void boto86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto86ActionPerformed
-        String valor;
-        if(matriz6[1][2] == 0){
-            if (turno==true){matriz6[1][2] = 1;} else{matriz6[1][2] = 2;}
-            if(matriz6[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto86.setText(valor);
-            turno = !turno;}
+coordenada(boto86,matriz6,1,2);
     }//GEN-LAST:event_boto86ActionPerformed
 
     private void boto96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto96ActionPerformed
-        String valor;
-        if(matriz6[2][2] == 0){
-            if (turno==true){matriz6[2][2] = 1;} else{matriz6[2][2] = 2;}
-            if(matriz6[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto96.setText(valor);
-            turno = !turno;}
+coordenada(boto96,matriz6,2,2);
     }//GEN-LAST:event_boto96ActionPerformed
 
     private void boto16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto16ActionPerformed
-        String valor;
-        if(matriz6[0][0] == 0){
-            if (turno==true){matriz6[0][0] = 1;} else{matriz6[0][0] = 2;}
-            if(matriz6[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto16.setText(valor);
-            turno = !turno;}
+coordenada(boto16,matriz6,0,0);
     }//GEN-LAST:event_boto16ActionPerformed
 
     private void boto26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto26ActionPerformed
-        String valor;
-        if(matriz6[1][0] == 0){
-            if (turno==true){matriz6[1][0] = 1;} else{matriz6[1][0] = 2;}
-            if(matriz6[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto26.setText(valor);
-            turno = !turno;}
+coordenada(boto26,matriz6,1,0);
     }//GEN-LAST:event_boto26ActionPerformed
 
     private void boto36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto36ActionPerformed
-        String valor;
-        if(matriz6[2][0] == 0){
-            if (turno==true){matriz6[2][0] = 1;} else{matriz6[2][0] = 2;}
-            if(matriz6[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto36.setText(valor);
-            turno = !turno;}
+coordenada(boto36,matriz6,2,0);
     }//GEN-LAST:event_boto36ActionPerformed
 
     private void boto46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto46ActionPerformed
-        String valor;
-        if(matriz6[0][1] == 0){
-            if (turno==true){matriz6[0][1] = 1;} else{matriz6[0][1] = 2;}
-            if(matriz6[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto46.setText(valor);
-            turno = !turno;}
+coordenada(boto46,matriz6,0,1);
     }//GEN-LAST:event_boto46ActionPerformed
 
     private void boto56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto56ActionPerformed
-        String valor;
-        if(matriz6[1][1] == 0){
-            if (turno==true){matriz6[1][1] = 1;} else{matriz6[1][1] = 2;}
-            if(matriz6[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto56.setText(valor);
-            turno = !turno;}
+coordenada(boto56,matriz6,1,1);
     }//GEN-LAST:event_boto56ActionPerformed
 
     private void boto67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto67ActionPerformed
-        String valor;
-        if(matriz7[2][1] == 0){
-            if (turno==true){matriz7[2][1] = 1;} else{matriz7[2][1] = 2;}
-            if(matriz7[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto67.setText(valor);
-            turno = !turno;}
+coordenada(boto67,matriz7,2,1);
     }//GEN-LAST:event_boto67ActionPerformed
 
     private void boto77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto77ActionPerformed
-        String valor;
-        if(matriz7[0][2] == 0){
-            if (turno==true){matriz7[0][2] = 1;} else{matriz7[0][2] = 2;}
-            if(matriz7[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto77.setText(valor);
-            turno = !turno;}
+coordenada(boto77,matriz7,0,2);
     }//GEN-LAST:event_boto77ActionPerformed
 
     private void boto87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto87ActionPerformed
-        String valor;
-        if(matriz7[1][2] == 0){
-            if (turno==true){matriz7[1][2] = 1;} else{matriz7[1][2] = 2;}
-            if(matriz7[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto87.setText(valor);
-            turno = !turno;}
+coordenada(boto87,matriz7,1,2);
     }//GEN-LAST:event_boto87ActionPerformed
 
     private void boto97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto97ActionPerformed
-        String valor;
-        if(matriz7[2][2] == 0){
-            if (turno==true){matriz7[2][2] = 1;} else{matriz7[2][2] = 2;}
-            if(matriz7[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto97.setText(valor);
-            turno = !turno;}
+coordenada(boto97,matriz7,2,2);
     }//GEN-LAST:event_boto97ActionPerformed
 
     private void boto17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto17ActionPerformed
-        String valor;
-        if(matriz7[0][0] == 0){
-            if (turno==true){matriz7[0][0] = 1;} else{matriz7[0][0] = 2;}
-            if(matriz7[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto17.setText(valor);
-            turno = !turno;}
+coordenada(boto17,matriz7,0,0);
     }//GEN-LAST:event_boto17ActionPerformed
 
     private void boto27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto27ActionPerformed
-        String valor;
-        if(matriz7[1][0] == 0){
-            if (turno==true){matriz7[1][0] = 1;} else{matriz7[1][0] = 2;}
-            if(matriz7[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto27.setText(valor);
-            turno = !turno;}
+coordenada(boto27,matriz7,1,0);
     }//GEN-LAST:event_boto27ActionPerformed
 
     private void boto37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto37ActionPerformed
-        String valor;
-        if(matriz7[2][0] == 0){
-            if (turno==true){matriz7[2][0] = 1;} else{matriz7[2][0] = 2;}
-            if(matriz7[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto37.setText(valor);
-            turno = !turno;}
+coordenada(boto37,matriz7,2,0);
     }//GEN-LAST:event_boto37ActionPerformed
 
     private void boto47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto47ActionPerformed
-        String valor;
-        if(matriz7[0][1] == 0){
-            if (turno==true){matriz7[0][1] = 1;} else{matriz7[0][1] = 2;}
-            if(matriz7[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto47.setText(valor);
-            turno = !turno;}
+coordenada(boto47,matriz7,0,1);
     }//GEN-LAST:event_boto47ActionPerformed
 
     private void boto57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto57ActionPerformed
-        String valor;
-        if(matriz7[1][1] == 0){
-            if (turno==true){matriz7[1][1] = 1;} else{matriz7[1][1] = 2;}
-            if(matriz7[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto57.setText(valor);
-            turno = !turno;}
+coordenada(boto57,matriz7,1,1);
     }//GEN-LAST:event_boto57ActionPerformed
 
     private void boto68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto68ActionPerformed
-        String valor;
-        if(matriz8[2][1] == 0){
-            if (turno==true){matriz8[2][1] = 1;} else{matriz8[2][1] = 2;}
-            if(matriz8[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto68.setText(valor);
-            turno = !turno;}
+coordenada(boto68,matriz8,2,1);
     }//GEN-LAST:event_boto68ActionPerformed
 
     private void boto78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto78ActionPerformed
-        String valor;
-        if(matriz8[0][2] == 0){
-            if (turno==true){matriz1[0][2] = 1;} else{matriz8[0][2] = 2;}
-            if(matriz8[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto78.setText(valor);
-            turno = !turno;}
-
+coordenada(boto78,matriz8,0,2);
     }//GEN-LAST:event_boto78ActionPerformed
 
     private void boto88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto88ActionPerformed
-        String valor;
-        if(matriz8[1][2] == 0){
-            if (turno==true){matriz8[1][2] = 1;} else{matriz8[1][2] = 2;}
-            if(matriz8[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto88.setText(valor);
-            turno = !turno;}
+coordenada(boto88,matriz8,1,2);
     }//GEN-LAST:event_boto88ActionPerformed
 
     private void boto98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto98ActionPerformed
-        String valor;
-        if(matriz8[2][2] == 0){
-            if (turno==true){matriz8[2][2] = 1;} else{matriz8[2][2] = 2;}
-            if(matriz8[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto98.setText(valor);
-            turno = !turno;}
+coordenada(boto98,matriz8,2,2);
     }//GEN-LAST:event_boto98ActionPerformed
 
     private void boto18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto18ActionPerformed
-        String valor;
-        if(matriz8[0][0] == 0){
-            if (turno==true){matriz8[0][0] = 1;} else{matriz8[0][0] = 2;}
-            if(matriz8[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto18.setText(valor);
-            turno = !turno;}
+coordenada(boto18,matriz8,0,0);
     }//GEN-LAST:event_boto18ActionPerformed
 
     private void boto28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto28ActionPerformed
-        String valor;
-        if(matriz8[1][0] == 0){
-            if (turno==true){matriz8[1][0] = 1;} else{matriz8[1][0] = 2;}
-            if(matriz1[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto28.setText(valor);
-            turno = !turno;}
+coordenada(boto28,matriz8,1,0);
     }//GEN-LAST:event_boto28ActionPerformed
 
     private void boto38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto38ActionPerformed
-        String valor;
-        if(matriz8[2][0] == 0){
-            if (turno==true){matriz8[2][0] = 1;} else{matriz8[2][0] = 2;}
-            if(matriz8[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto38.setText(valor);
-            turno = !turno;}
+coordenada(boto38,matriz8,2,0);
     }//GEN-LAST:event_boto38ActionPerformed
 
     private void boto48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto48ActionPerformed
-        String valor;
-        if(matriz8[0][1] == 0){
-            if (turno==true){matriz8[0][1] = 1;} else{matriz8[0][1] = 2;}
-            if(matriz8[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto48.setText(valor);
-            turno = !turno;}
+coordenada(boto48,matriz8,0,1);
     }//GEN-LAST:event_boto48ActionPerformed
 
     private void boto58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto58ActionPerformed
-        String valor;
-        if(matriz8[1][1] == 0){
-            if (turno==true){matriz8[1][1] = 1;} else{matriz8[1][1] = 2;}
-            if(matriz8[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto58.setText(valor);
-            turno = !turno;}
+coordenada(boto58,matriz8,1,1);
     }//GEN-LAST:event_boto58ActionPerformed
 
     private void boto69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto69ActionPerformed
-        String valor;
-        if(matriz9[2][1] == 0){
-            if (turno==true){matriz9[2][1] = 1;} else{matriz9[2][1] = 2;}
-            if(matriz9[2][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto69.setText(valor);
-            turno = !turno;}
+coordenada(boto69,matriz9,2,1);
     }//GEN-LAST:event_boto69ActionPerformed
 
     private void boto79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto79ActionPerformed
-        String valor;
-        if(matriz9[0][2] == 0){
-            if (turno==true){matriz9[0][2] = 1;} else{matriz9[0][2] = 2;}
-            if(matriz9[0][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto79.setText(valor);
-            turno = !turno;}
+coordenada(boto79,matriz9,0,2);
     }//GEN-LAST:event_boto79ActionPerformed
 
     private void boto89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto89ActionPerformed
-        String valor;
-        if(matriz9[1][2] == 0){
-            if (turno==true){matriz9[1][2] = 1;} else{matriz9[1][2] = 2;}
-            if(matriz9[1][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto89.setText(valor);
-            turno = !turno;}
+coordenada(boto89,matriz9,1,2);
     }//GEN-LAST:event_boto89ActionPerformed
 
     private void boto99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto99ActionPerformed
-        String valor;
-        if(matriz9[2][2] == 0){
-            if (turno==true){matriz9[2][2] = 1;} else{matriz9[2][2] = 2;}
-            if(matriz9[2][2] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto99.setText(valor);
-            turno = !turno;}
+coordenada(boto99,matriz9,2,2);
     }//GEN-LAST:event_boto99ActionPerformed
 
     private void boto19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto19ActionPerformed
-        String valor;
-        if(matriz9[0][0] == 0){
-            if (turno==true){matriz9[0][0] = 1;} else{matriz9[0][0] = 2;}
-            if(matriz9[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto19.setText(valor);
-            turno = !turno;}
+coordenada(boto19,matriz9,0,0);
     }//GEN-LAST:event_boto19ActionPerformed
 
     private void boto29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto29ActionPerformed
-        String valor;
-        if(matriz9[1][0] == 0){
-            if (turno==true){matriz9[1][0] = 1;} else{matriz9[1][0] = 2;}
-            if(matriz9[1][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto29.setText(valor);
-            turno = !turno;}
+coordenada(boto29,matriz9,1,0);
     }//GEN-LAST:event_boto29ActionPerformed
 
     private void boto39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto39ActionPerformed
-        String valor;
-        if(matriz9[2][0] == 0){
-            if (turno==true){matriz9[2][0] = 1;} else{matriz9[2][0] = 2;}
-            if(matriz9[2][0] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto39.setText(valor);
-            turno = !turno;}
+coordenada(boto39,matriz9,2,0);
     }//GEN-LAST:event_boto39ActionPerformed
 
     private void boto49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto49ActionPerformed
-        String valor;
-        if(matriz9[0][1] == 0){
-            if (turno==true){matriz9[0][1] = 1;} else{matriz9[0][1] = 2;}
-            if(matriz9[0][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto49.setText(valor);
-            turno = !turno;}
-
+coordenada(boto49,matriz9,0,1);
     }//GEN-LAST:event_boto49ActionPerformed
 
     private void boto59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto59ActionPerformed
-        String valor;
-        if(matriz9[1][1] == 0){
-            if (turno==true){matriz9[1][1] = 1;} else{matriz9[1][1] = 2;}
-            if(matriz9[1][1] == 1){valor = "X";} else {valor = "O";}
-            valor = (turno) ? "X" : "O";
-            boto59.setText(valor);
-            turno = !turno;}
+coordenada(boto59,matriz9,1,1);
     }//GEN-LAST:event_boto59ActionPerformed
          
 
