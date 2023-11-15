@@ -1,4 +1,3 @@
-
 package tictac;
 import javax.swing.*;
 import java.awt.*;
@@ -10,15 +9,17 @@ public class ventana extends javax.swing.JFrame {
         Color color_boton;
 
         //Creacion de matrices
-        private int[][] matriz1 = new int[3][3];
-        private int[][] matriz2 = new int[3][3];
-        private int[][] matriz3 = new int[3][3];
-        private int[][] matriz4 = new int[3][3];
-        private int[][] matriz5 = new int[3][3];
-        private int[][] matriz6 = new int[3][3];
-        private int[][] matriz7 = new int[3][3];
-        private int[][] matriz8 = new int[3][3];
-        private int[][] matriz9 = new int[3][3];
+        gatito matriz1 = new gatito("matriz1");
+        gatito matriz2 = new gatito("matriz1");
+        gatito matriz3 = new gatito("matriz1");
+        gatito matriz4= new gatito("matriz1");
+        gatito matriz5 = new gatito("matriz1");
+        gatito matriz6 = new gatito("matriz1");
+        gatito matriz7 = new gatito("matriz1");
+        gatito matriz8 = new gatito("matriz1");
+        gatito matriz9 = new gatito("matriz1");
+        
+        
         
         //ver en que matrices ya hay un ganador:
         private int[][] matriz_ganadora = new int[3][3];
@@ -29,7 +30,6 @@ public class ventana extends javax.swing.JFrame {
                                                             {matriz4, matriz5, matriz6},
                                                             {matriz7, matriz8, matriz9}     };
 
-        
 //METODOS:
         
 //--------------------------
@@ -78,15 +78,14 @@ public void verificacion() {
             for (int j = 0; j < matriz_ganadora[i].length; j++) {
                 matriz_ganadora[i][j] = 0;
             }}
-        //Todos los botones en blanco+
+        //Todos los botones en blanco
         Field[] fields = getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.getType() == JButton.class && field.getName().startsWith("boto")) {   //aqui se pregunta como comienzan los botones que se quiere modificar.
                 try {
                     JButton boton = (JButton) field.get(this);
-                    boton.setText("");
                     boton.setBackground(Color.WHITE);
-                    
+                    resultados.setText("-JUGANDO-");  
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }}}
@@ -104,7 +103,10 @@ public void verificacion() {
 // 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
 //--------------------------
  public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
-    if (matriz[x][y] == 0) {
+    if (verifica_ganador(matriz_ganadora)) {
+        return;
+    }
+     if (matriz[x][y] == 0) {
         if (turno) {matriz[x][y] = 1;
             color_boton = Color.RED;
         } else {
