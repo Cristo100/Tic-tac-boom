@@ -12,8 +12,11 @@ Al momento de crear el juego, se tuvieron en cuenta 3 matrices:
 
 ### Librerias:
 Respecto a las librerias importadas para el trabajo:
+
 javax.swing: para identificar JButton de forma especifica dentro de los metodos
+
 java.awt: para editar las propiedades de los controles.
+
 java.lang.reflect.Field: Para tener un rango establecido por nombre dentro de los controles.
 
 ### Metodos:
