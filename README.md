@@ -18,7 +18,7 @@ java.awt: para editar las propiedades de los controles.
 java.lang.reflect.Field: Para tener un rango establecido por nombre dentro de los controles.
 
 ### Metodos:
-### verifica_ganador:
+#### verifica_ganador:
 Entre las acciones importantes dentro de una matriz base es saber si al momento de hacer algun cambio cause la victoria para alguno de
 los jugadores, por lo que se identifican los posibles caso de victoria y se cambian los valores dependiendo del ganador (en nuestro caso es 0 si se puede jugar, 1 si gano X y
 2 si ganó O), esto 
