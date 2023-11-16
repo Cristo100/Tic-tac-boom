@@ -8,16 +8,14 @@ teniendo las 81 opciones en el que un jugador puede apretar junto a las alternat
 Al momento de crear el juego, se tuvieron en cuenta 3 matrices:
 1- las matrices base (gatito), son las matrices en los que se determinaran los movimientos de los jugadores a base de botones.
 2- la gran matriz (gatote) que consiste en una union de las 9 matrices base en los que se desarrolla el juego en su totalidad.
-3- la matriz ganadora, este es el que determina quien tiene una matriz base completa "conquistada" para ganar el juego de la gran matriz (gatote).
+3- la matriz ganadora, este es el que determina quien tiene una matriz base completa "conquistada" para ganar el juego de la gran matriz (gatote).<br>
 
 ### Librerias:
 Respecto a las librerias importadas para el trabajo:
 
-javax.swing: para identificar JButton de forma especifica dentro de los metodos
-
-java.awt: para editar las propiedades de los controles.
-
-java.lang.reflect.Field: Para tener un rango establecido por nombre dentro de los controles.
+javax.swing: para identificar JButton de forma especifica dentro de los metodos<br>
+java.awt: para editar las propiedades de los controles.<br>
+java.lang.reflect.Field: Para tener un rango establecido por nombre dentro de los controles.<br>
 
 ### Metodos:
 #### verifica_ganador(int[][] matriz):
@@ -32,6 +30,6 @@ Una vez revisado que hubo un ganador en una de las matrices base gracias a "veri
 Cada boton que simboliza una opcion para marcar su signo dentro del juego posee este metodo que ejectuda el cambio de propiedades al boton para notar la diferencia de puntuaciones, ademas de cambiar el turno, modificar los valores de las matrices dentro de la gran matriz, impedir que se siga jugando dentro de un 3 en raya ya ocupado y llamar al metodo "verificacion()" para ver si hay una victoria cada vez que se hace una jugada.
 
 #### reinicio_total():
-Este metodo es utilizado en el boton de reinicio para hacer que todas las variables y matrices vuelvan a su estado inicial previo al juego. Esto incluye la matriz ganadora, configuracion de botones y matrices base.
+Este metodo es utilizado en el boton de reinicio para hacer que todas las variables y matrices vuelvan a su estado inicial previo al juego. Esto incluye la matriz ganadora, configuracion de botones y matrices base.<br>
 
 ![image](https://github.com/Cristo100/Tic-tac-boom/assets/135175850/6bb70054-537a-4bac-a020-0207e2918167)
