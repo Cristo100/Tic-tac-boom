@@ -65,52 +65,11 @@ public class ventana extends javax.swing.JFrame {
                 }}
     juego.juego_ganado = false;
     }
-    
-    
-    //Verificacion:
-// Método de verificación
-public void verificacion() {
-    for (int i = 0; i < juego.gran_matriz.length; i++) {
-        for (int j = 0; j < juego.gran_matriz[i].length; j++) {
-            if (juego.matriz_ganadora[i][j] == 0 && verifica_ganador(juego.gran_matriz[i][j].getMatriz())) {
-                juego.matriz_ganadora[i][j] = juego.turno ? 2 : 1;
-                System.out.println("Jugador " + (juego.turno ? "O" : "X") + " ganador en: fila " + (i + 1) + " / columna: " + (j + 1));
-            }
-        }
-    }
 
-    if (verifica_ganador(juego.matriz_ganadora)) {
-        // Cambiar el texto del JLabel
-        resultados.setText((juego.turno ? "O" : "X") + " Gano la partida");
-        juego.juego_ganado = true;
-        return;
-    } else {
-        // Si no hay ganador, puedes cambiar el texto a "-JUGANDO-"
-        resultados.setText("-JUGANDO-");
-    }
-}
-
-    // Método privado de verificación de ganador en una matriz
-    private boolean verifica_ganador(int[][] matriz) {
-        for (int i = 0; i < 3; i++) {
-            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-                return true;
-            }
-            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-                return true;
-            }
-        }
-        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-            return true;
-        }
-        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-            return true;
-        }
-        return false;
-    }
     
     
-
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1182,9 +1141,9 @@ public void verificacion() {
                             .addComponent(boto89, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto99, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto79, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reinicioboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salirboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
