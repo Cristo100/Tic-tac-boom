@@ -34,6 +34,7 @@ public class ventana extends javax.swing.JFrame {
         juego.setGatito(2, 0, cuadro7);
         juego.setGatito(2, 1, cuadro8);
         juego.setGatito(2, 2, cuadro9);
+        
     }
 
 //METODOS BOTONES:
@@ -767,6 +768,7 @@ public class ventana extends javax.swing.JFrame {
 
         resultados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultados.setText("-JUGANDO-");
+        resultados.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1605,7 +1607,7 @@ juego.coordenada(boto59,cuadro9,1,1,2,2);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton reinicioboton;
-    private javax.swing.JLabel resultados;
+    public javax.swing.JLabel resultados;
     private javax.swing.JButton salirboton;
     // End of variables declaration//GEN-END:variables
 }
