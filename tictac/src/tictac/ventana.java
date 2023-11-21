@@ -4,79 +4,46 @@ import java.awt.*;
 import java.lang.reflect.Field;
 
 public class ventana extends javax.swing.JFrame {
-//Creacion de variables:
-        boolean juego_ganado = false;
-        boolean turno = true;
-        Color color_boton;
+    // Declarar las instancias de gatito y gatote como variables de instancia
+    private gatito cuadro1, cuadro2, cuadro3, cuadro4, cuadro5, cuadro6, cuadro7, cuadro8, cuadro9;
+    private gatote juego;
 
-        //Creacion de matrices:
-        private int[][] matriz1 = new int[3][3];
-        private int[][] matriz2 = new int[3][3];
-        private int[][] matriz3 = new int[3][3];
-        private int[][] matriz4 = new int[3][3];
-        private int[][] matriz5 = new int[3][3];
-        private int[][] matriz6 = new int[3][3];
-        private int[][] matriz7 = new int[3][3];
-        private int[][] matriz8 = new int[3][3];
-        private int[][] matriz9 = new int[3][3];
-        
-        //ver en que matrices ya hay un ganador (puntuacion)
-        private int[][] matriz_ganadora = new int[3][3];
+    // Constructor de la ventana
+    public ventana() {
+        initComponents(); // Aquí deberías tener la inicialización de componentes de tu GUI
 
-        
-        //  Creacion de gran matriz (conformado por las matrices pequeñas)
-        private int[][][][] granmatriz ={    {matriz1, matriz2, matriz3},
-                                                            {matriz4, matriz5, matriz6},
-                                                            {matriz7, matriz8, matriz9}     };
+        // Inicializar las instancias de gatito y gatote en el constructor
+        cuadro1 = new gatito();
+        cuadro2 = new gatito();
+        cuadro3 = new gatito();
+        cuadro4 = new gatito();
+        cuadro5 = new gatito();
+        cuadro6 = new gatito();
+        cuadro7 = new gatito();
+        cuadro8 = new gatito();
+        cuadro9 = new gatito();
 
-        
-        
-//METODOS:
-//--------------------------
-// 1- verificacion de ganador:
-//--------------------------
-public void verificacion() {
-    for (int i = 0; i < granmatriz.length; i++) {  // Verificar en las filas, columnas y diagonales de cada matriz pequeña (se ven filas y columnas)
-        for (int j = 0; j < granmatriz[i].length; j++) { // Verificar solo si no hay un ganador en este juego
-            if (matriz_ganadora[i][j] == 0 && verifica_ganador(granmatriz[i][j])) {
-                matriz_ganadora[i][j] = turno ? 2 : 1; // Establecer el ganador en esta posición
-                System.out.println("Jugador " + (turno ? "O" : "X") + " ganador en: fila " + (i + 1) + " / columna: " + (j + 1));
-            }}}
-            //ve si alguien gano definitivamente
-            if (verifica_ganador(matriz_ganadora)) {
-                resultados.setText((turno ? "O" : "X")+" Gano la partida");
-                juego_ganado = true;
-                return;
-            }}
-                    // Ganador en una matriz
-                        private boolean verifica_ganador(int[][] matriz) {
-                            for (int i = 0; i < 3; i++) {
-                                // Verificar filas y columnas
-                                if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-                                    return true; 
-                                }
-                                if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-                                    return true;
-                                }
-                            }
-                            // Verificar diagonales
-                            if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-                                return true;
-                            }
-                            if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-                                return true;
-                            }
-                            return false; 
-                        }
+        juego = new gatote();
 
-//--------------------------
-// 2- sistema de reinicio:
-//--------------------------
+        // Posicionamiento de gatitos en gatote:
+        juego.setGatito(0, 0, cuadro1);
+        juego.setGatito(0, 1, cuadro2);
+        juego.setGatito(0, 2, cuadro3);
+        juego.setGatito(1, 0, cuadro4);
+        juego.setGatito(1, 1, cuadro5);
+        juego.setGatito(1, 2, cuadro6);
+        juego.setGatito(2, 0, cuadro7);
+        juego.setGatito(2, 1, cuadro8);
+        juego.setGatito(2, 2, cuadro9);
+    }
+
+
+//METODOS BOTONES:
     private void reinicio_total() {
         //Ganadores
-        for (int i = 0; i < matriz_ganadora.length; i++) {
-            for (int j = 0; j < matriz_ganadora[i].length; j++) {
-                matriz_ganadora[i][j] = 0;
+        for (int i = 0; i < juego.matriz_ganadora.length; i++) {
+            for (int j = 0; j < juego.matriz_ganadora[i].length; j++) {
+                juego.matriz_ganadora[i][j] = 0;
             }}
         //Todos los botones en blanco
         Field[] fields = getClass().getDeclaredFields();
@@ -86,48 +53,19 @@ public void verificacion() {
                     JButton boton = (JButton) field.get(this);
                     boton.setBackground(Color.WHITE);
                     resultados.setText("-JUGANDO-"); 
-                    juego_ganado = false;
+                    juego.juego_ganado = false;
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }}}
-        
         //las matrices de resultados de vuelta a 0:
-        for (int i = 0; i < granmatriz.length; i++) {
-        for (int j = 0; j < granmatriz[i].length; j++) {
-            for (int k = 0; k < granmatriz[i][j].length; k++) {
-                for (int l = 0; l < granmatriz[i][j][k].length; l++) {
-                    granmatriz[i][j][k][l] = 0;
-                }}}}
+    for (int i = 0; i < juego.gran_matriz.length; i++) {
+        for (int j = 0; j < juego.gran_matriz[i].length; j++) {
+            gatito cuadro = juego.gran_matriz[i][j];
+            cuadro.matriz = new int[3][3];
+                }}
+    juego.juego_ganado = false;
     }
 
-//--------------------------
-// 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
-//--------------------------
- public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx) {
-    if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
-    if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
-    
-    //Caso de estar disponible el gato:
-    if (matriz[x][y] == 0) {
-        if (turno) {
-            matriz[x][y] = 1;
-            color_boton = Color.RED;
-        } else {
-            matriz[x][y] = 2;
-            color_boton = Color.BLUE; 
-        }
-        button.setBackground(color_boton);
-        turno = !turno;
-
-        // Llamada de otros métodos.
-        verificacion();
-    }
-}
- 
-//---------------------------------
-    public ventana() {
-        initComponents();
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1221,39 +1159,39 @@ public void verificacion() {
     }//GEN-LAST:event_salirbotonActionPerformed
 
     private void boto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto1ActionPerformed
-coordenada(boto1,matriz1,0,0, 0,0);
+juego.coordenada(boto1,cuadro1,0,0,0,0);
     }//GEN-LAST:event_boto1ActionPerformed
 
     private void boto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto2ActionPerformed
-coordenada(boto2,matriz1,1,0,0,0);
+juego.coordenada(boto2,cuadro1,1,0,0,0);
     }//GEN-LAST:event_boto2ActionPerformed
 
     private void boto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto3ActionPerformed
-coordenada(boto3,matriz1,2,0,0,0);
+juego.coordenada(boto3,cuadro1,2,0,0,0);
     }//GEN-LAST:event_boto3ActionPerformed
 
     private void boto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto4ActionPerformed
-coordenada(boto4,matriz1,0,1,0,0);
+juego.coordenada(boto4,cuadro1,0,1,0,0);
     }//GEN-LAST:event_boto4ActionPerformed
 
     private void boto5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto5ActionPerformed
-coordenada(boto5,matriz1,1,1,0,0);
+juego.coordenada(boto5,cuadro1,1,1,0,0);
     }//GEN-LAST:event_boto5ActionPerformed
 
     private void boto6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto6ActionPerformed
-coordenada(boto6,matriz1,2,1,0,0);
+juego.coordenada(boto6,cuadro1,2,1,0,0);
     }//GEN-LAST:event_boto6ActionPerformed
 
     private void boto7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto7ActionPerformed
-coordenada(boto7,matriz1,0,2,0,0);
+juego.coordenada(boto7,cuadro1,0,2,0,0);
     }//GEN-LAST:event_boto7ActionPerformed
 
     private void boto8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto8ActionPerformed
-coordenada(boto8,matriz1,1,2,0,0);
+juego.coordenada(boto8,cuadro1,1,2,0,0);
     }//GEN-LAST:event_boto8ActionPerformed
 
     private void boto9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto9ActionPerformed
-coordenada(boto9,matriz1,2,2,0,0);
+juego.coordenada(boto9,cuadro1,2,2,0,0);
     }//GEN-LAST:event_boto9ActionPerformed
 
     private void reiniciobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciobotonActionPerformed
@@ -1261,296 +1199,296 @@ coordenada(boto9,matriz1,2,2,0,0);
         int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres reiniciar?", "Confirmación", JOptionPane.YES_NO_OPTION);
         if (opcion == JOptionPane.YES_OPTION) {
             reinicio_total();
-            turno = true;
+            juego.turno = true;
         }
     }//GEN-LAST:event_reiniciobotonActionPerformed
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
-coordenada(boto12,matriz2,0,0,1,0);
+juego.coordenada(boto12,cuadro2,0,0,1,0);
     }//GEN-LAST:event_boto12ActionPerformed
 
     private void boto22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto22ActionPerformed
-coordenada(boto22,matriz2,1,0,1,0);
+juego.coordenada(boto22,cuadro2,1,0,1,0);
     }//GEN-LAST:event_boto22ActionPerformed
 
     private void boto32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto32ActionPerformed
-coordenada(boto32,matriz2,2,0,1,0);
+juego.coordenada(boto32,cuadro2,2,0,1,0);
     }//GEN-LAST:event_boto32ActionPerformed
 
     private void boto42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto42ActionPerformed
-coordenada(boto42,matriz2,0,1,1,0);
+juego.coordenada(boto42,cuadro2,0,1,1,0);
     }//GEN-LAST:event_boto42ActionPerformed
 
     private void boto52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto52ActionPerformed
-coordenada(boto52,matriz2,1,1,1,0);
+juego.coordenada(boto52,cuadro2,1,1,1,0);
     }//GEN-LAST:event_boto52ActionPerformed
 
     private void boto62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto62ActionPerformed
-coordenada(boto62,matriz2,2,1,1,0);
+juego.coordenada(boto62,cuadro2,2,1,1,0);
     }//GEN-LAST:event_boto62ActionPerformed
 
     private void boto72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto72ActionPerformed
-coordenada(boto72,matriz2,0 ,2,1,0);
+juego.coordenada(boto72,cuadro2,0 ,2,1,0);
     }//GEN-LAST:event_boto72ActionPerformed
 
     private void boto82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto82ActionPerformed
-coordenada(boto82,matriz2,1,2,1,0);
+juego.coordenada(boto82,cuadro2,1,2,1,0);
     }//GEN-LAST:event_boto82ActionPerformed
 
     private void boto92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto92ActionPerformed
-coordenada(boto92,matriz2,2,2,1,0);
+juego.coordenada(boto92,cuadro2,2,2,1,0);
     }//GEN-LAST:event_boto92ActionPerformed
 
     private void boto23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto23ActionPerformed
-coordenada(boto23,matriz3,1,0,2,0);
+juego.coordenada(boto23,cuadro3,1,0,2,0);
     }//GEN-LAST:event_boto23ActionPerformed
 
     private void boto33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto33ActionPerformed
-coordenada(boto33,matriz3,2,0,2,0);
+juego.coordenada(boto33,cuadro3,2,0,2,0);
     }//GEN-LAST:event_boto33ActionPerformed
 
     private void boto43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto43ActionPerformed
-coordenada(boto43,matriz3,0,1,2,0);
+juego.coordenada(boto43,cuadro3,0,1,2,0);
     }//GEN-LAST:event_boto43ActionPerformed
 
     private void boto53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto53ActionPerformed
-coordenada(boto53,matriz3,1,1,2,0);
+juego.coordenada(boto53,cuadro3,1,1,2,0);
     }//GEN-LAST:event_boto53ActionPerformed
 
     private void boto63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto63ActionPerformed
-coordenada(boto63,matriz3,2,1,2,0);
+juego.coordenada(boto63,cuadro3,2,1,2,0);
     }//GEN-LAST:event_boto63ActionPerformed
 
     private void boto73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto73ActionPerformed
-coordenada(boto73,matriz3,0,2,2,0);
+juego.coordenada(boto73,cuadro3,0,2,2,0);
     }//GEN-LAST:event_boto73ActionPerformed
 
     private void boto83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto83ActionPerformed
-coordenada(boto83,matriz3,1,2,2,0);
+juego.coordenada(boto83,cuadro3,1,2,2,0);
     }//GEN-LAST:event_boto83ActionPerformed
 
     private void boto93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto93ActionPerformed
-coordenada(boto93,matriz3,2,2,2,0);
+juego.coordenada(boto93,cuadro3,2,2,2,0);
     }//GEN-LAST:event_boto93ActionPerformed
 
     private void boto13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto13ActionPerformed
-coordenada(boto13,matriz3,0,0,2,0);
+juego.coordenada(boto13,cuadro3,0,0,2,0);
     }//GEN-LAST:event_boto13ActionPerformed
 
     private void boto24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto24ActionPerformed
-coordenada(boto24,matriz4,1,0,0,1);
+juego.coordenada(boto24,cuadro4,1,0,0,1);
     }//GEN-LAST:event_boto24ActionPerformed
 
     private void boto34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto34ActionPerformed
-coordenada(boto34,matriz4,2,0,0,1);
+juego.coordenada(boto34,cuadro4,2,0,0,1);
     }//GEN-LAST:event_boto34ActionPerformed
 
     private void boto44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto44ActionPerformed
-coordenada(boto44,matriz4,0,1,0,1);
+juego.coordenada(boto44,cuadro4,0,1,0,1);
     }//GEN-LAST:event_boto44ActionPerformed
 
     private void boto54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto54ActionPerformed
-coordenada(boto54,matriz4,1,1,0,1);
+juego.coordenada(boto54,cuadro4,1,1,0,1);
     }//GEN-LAST:event_boto54ActionPerformed
 
     private void boto64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto64ActionPerformed
-coordenada(boto64,matriz4,2,1,0,1);
+juego.coordenada(boto64,cuadro4,2,1,0,1);
     }//GEN-LAST:event_boto64ActionPerformed
 
     private void boto74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto74ActionPerformed
-coordenada(boto74,matriz4,0,2,0,1);
+juego.coordenada(boto74,cuadro4,0,2,0,1);
     }//GEN-LAST:event_boto74ActionPerformed
 
     private void boto84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto84ActionPerformed
-coordenada(boto84,matriz4,1,2,0,1);
+juego.coordenada(boto84,cuadro4,1,2,0,1);
     }//GEN-LAST:event_boto84ActionPerformed
 
     private void boto94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto94ActionPerformed
-coordenada(boto94,matriz4,2,2,0,1);
+juego.coordenada(boto94,cuadro4,2,2,0,1);
     }//GEN-LAST:event_boto94ActionPerformed
 
     private void boto14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto14ActionPerformed
-coordenada(boto14,matriz4,0,0,0,1);
+juego.coordenada(boto14,cuadro4,0,0,0,1);
     }//GEN-LAST:event_boto14ActionPerformed
 
     private void boto75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto75ActionPerformed
-coordenada(boto75,matriz5,0,2,1,1);
+juego.coordenada(boto75,cuadro5,0,2,1,1);
     }//GEN-LAST:event_boto75ActionPerformed
 
     private void boto85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto85ActionPerformed
-coordenada(boto85,matriz5,1,2,1,1);
+juego.coordenada(boto85,cuadro5,1,2,1,1);
     }//GEN-LAST:event_boto85ActionPerformed
 
     private void boto95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto95ActionPerformed
-coordenada(boto95,matriz5,2,2,1,1);
+juego.coordenada(boto95,cuadro5,2,2,1,1);
     }//GEN-LAST:event_boto95ActionPerformed
 
     private void boto15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto15ActionPerformed
-coordenada(boto15,matriz5,0,0,1,1);
+juego.coordenada(boto15,cuadro5,0,0,1,1);
     }//GEN-LAST:event_boto15ActionPerformed
 
     private void boto25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto25ActionPerformed
-coordenada(boto25,matriz5,1,0,1,1);
+juego.coordenada(boto25,cuadro5,1,0,1,1);
     }//GEN-LAST:event_boto25ActionPerformed
 
     private void boto35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto35ActionPerformed
-coordenada(boto35,matriz5,2,0,1,1);
+juego.coordenada(boto35,cuadro5,2,0,1,1);
     }//GEN-LAST:event_boto35ActionPerformed
 
     private void boto45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto45ActionPerformed
-coordenada(boto45,matriz5,0,1,1,1);
+juego.coordenada(boto45,cuadro5,0,1,1,1);
     }//GEN-LAST:event_boto45ActionPerformed
 
     private void boto55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto55ActionPerformed
-coordenada(boto55,matriz5,1,1,1,1);
+juego.coordenada(boto55,cuadro5,1,1,1,1);
     }//GEN-LAST:event_boto55ActionPerformed
 
     private void boto65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto65ActionPerformed
-coordenada(boto65,matriz5,2,1,1,1);
+juego.coordenada(boto65,cuadro5,2,1,1,1);
     }//GEN-LAST:event_boto65ActionPerformed
 
     private void boto66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto66ActionPerformed
-coordenada(boto66,matriz6,2,1,2,1);
+juego.coordenada(boto66,cuadro6,2,1,2,1);
     }//GEN-LAST:event_boto66ActionPerformed
 
     private void boto76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto76ActionPerformed
-coordenada(boto76,matriz6,0,2,2,1);
+juego.coordenada(boto76,cuadro6,0,2,2,1);
     }//GEN-LAST:event_boto76ActionPerformed
 
     private void boto86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto86ActionPerformed
-coordenada(boto86,matriz6,1,2,2,1);
+juego.coordenada(boto86,cuadro6,1,2,2,1);
     }//GEN-LAST:event_boto86ActionPerformed
 
     private void boto96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto96ActionPerformed
-coordenada(boto96,matriz6,2,2,2,1);
+juego.coordenada(boto96,cuadro6,2,2,2,1);
     }//GEN-LAST:event_boto96ActionPerformed
 
     private void boto16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto16ActionPerformed
-coordenada(boto16,matriz6,0,0,2,1);
+juego.coordenada(boto16,cuadro6,0,0,2,1);
     }//GEN-LAST:event_boto16ActionPerformed
 
     private void boto26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto26ActionPerformed
-coordenada(boto26,matriz6,1,0,2,1);
+juego.coordenada(boto26,cuadro6,1,0,2,1);
     }//GEN-LAST:event_boto26ActionPerformed
 
     private void boto36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto36ActionPerformed
-coordenada(boto36,matriz6,2,0,2,1);
+juego.coordenada(boto36,cuadro6,2,0,2,1);
     }//GEN-LAST:event_boto36ActionPerformed
 
     private void boto46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto46ActionPerformed
-coordenada(boto46,matriz6,0,1,2,1);
+juego.coordenada(boto46,cuadro6,0,1,2,1);
     }//GEN-LAST:event_boto46ActionPerformed
 
     private void boto56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto56ActionPerformed
-coordenada(boto56,matriz6,1,1,2,1);
+juego.coordenada(boto56,cuadro6,1,1,2,1);
     }//GEN-LAST:event_boto56ActionPerformed
 
     private void boto67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto67ActionPerformed
-coordenada(boto67,matriz7,2,1,0,2);
+juego.coordenada(boto67,cuadro7,2,1,0,2);
     }//GEN-LAST:event_boto67ActionPerformed
 
     private void boto77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto77ActionPerformed
-coordenada(boto77,matriz7,0,2,0,2);
+juego.coordenada(boto77,cuadro7,0,2,0,2);
     }//GEN-LAST:event_boto77ActionPerformed
 
     private void boto87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto87ActionPerformed
-coordenada(boto87,matriz7,1,2,0,2);
+juego.coordenada(boto87,cuadro7,1,2,0,2);
     }//GEN-LAST:event_boto87ActionPerformed
 
     private void boto97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto97ActionPerformed
-coordenada(boto97,matriz7,2,2,0,2);
+juego.coordenada(boto97,cuadro7,2,2,0,2);
     }//GEN-LAST:event_boto97ActionPerformed
 
     private void boto17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto17ActionPerformed
-coordenada(boto17,matriz7,0,0,0,2);
+juego.coordenada(boto17,cuadro7,0,0,0,2);
     }//GEN-LAST:event_boto17ActionPerformed
 
     private void boto27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto27ActionPerformed
-coordenada(boto27,matriz7,1,0,0,2);
+juego.coordenada(boto27,cuadro7,1,0,0,2);
     }//GEN-LAST:event_boto27ActionPerformed
 
     private void boto37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto37ActionPerformed
-coordenada(boto37,matriz7,2,0,0,2);
+juego.coordenada(boto37,cuadro7,2,0,0,2);
     }//GEN-LAST:event_boto37ActionPerformed
 
     private void boto47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto47ActionPerformed
-coordenada(boto47,matriz7,0,1,0,2);
+juego.coordenada(boto47,cuadro7,0,1,0,2);
     }//GEN-LAST:event_boto47ActionPerformed
 
     private void boto57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto57ActionPerformed
-coordenada(boto57,matriz7,1,1,0,2);
+juego.coordenada(boto57,cuadro7,1,1,0,2);
     }//GEN-LAST:event_boto57ActionPerformed
 
     private void boto68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto68ActionPerformed
-coordenada(boto68,matriz8,2,1,1,2);
+juego.coordenada(boto68,cuadro8,2,1,1,2);
     }//GEN-LAST:event_boto68ActionPerformed
 
     private void boto78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto78ActionPerformed
-coordenada(boto78,matriz8,0,2,1,2);
+juego.coordenada(boto78,cuadro8,0,2,1,2);
     }//GEN-LAST:event_boto78ActionPerformed
 
     private void boto88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto88ActionPerformed
-coordenada(boto88,matriz8,1,2,1,2);
+juego.coordenada(boto88,cuadro8,1,2,1,2);
     }//GEN-LAST:event_boto88ActionPerformed
 
     private void boto98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto98ActionPerformed
-coordenada(boto98,matriz8,2,2,1,2);
+juego.coordenada(boto98,cuadro8,2,2,1,2);
     }//GEN-LAST:event_boto98ActionPerformed
 
     private void boto18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto18ActionPerformed
-coordenada(boto18,matriz8,0,0,1,2);
+juego.coordenada(boto18,cuadro8,0,0,1,2);
     }//GEN-LAST:event_boto18ActionPerformed
 
     private void boto28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto28ActionPerformed
-coordenada(boto28,matriz8,1,0,1,2);
+juego.coordenada(boto28,cuadro8,1,0,1,2);
     }//GEN-LAST:event_boto28ActionPerformed
 
     private void boto38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto38ActionPerformed
-coordenada(boto38,matriz8,2,0,1,2);
+juego.coordenada(boto38,cuadro8,2,0,1,2);
     }//GEN-LAST:event_boto38ActionPerformed
 
     private void boto48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto48ActionPerformed
-coordenada(boto48,matriz8,0,1,1,2);
+juego.coordenada(boto48,cuadro8,0,1,1,2);
     }//GEN-LAST:event_boto48ActionPerformed
 
     private void boto58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto58ActionPerformed
-coordenada(boto58,matriz8,1,1,1,2);
+juego.coordenada(boto58,cuadro8,1,1,1,2);
     }//GEN-LAST:event_boto58ActionPerformed
 
     private void boto69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto69ActionPerformed
-coordenada(boto69,matriz9,2,1,2,2);
+juego.coordenada(boto69,cuadro9,2,1,2,2);
     }//GEN-LAST:event_boto69ActionPerformed
 
     private void boto79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto79ActionPerformed
-coordenada(boto79,matriz9,0,2,2,2);
+juego.coordenada(boto79,cuadro9,0,2,2,2);
     }//GEN-LAST:event_boto79ActionPerformed
 
     private void boto89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto89ActionPerformed
-coordenada(boto89,matriz9,1,2,2,2);
+juego.coordenada(boto89,cuadro9,1,2,2,2);
     }//GEN-LAST:event_boto89ActionPerformed
 
     private void boto99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto99ActionPerformed
-coordenada(boto99,matriz9,2,2,2,2);
+juego.coordenada(boto99,cuadro9,2,2,2,2);
     }//GEN-LAST:event_boto99ActionPerformed
 
     private void boto19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto19ActionPerformed
-coordenada(boto19,matriz9,0,0,2,2);
+juego.coordenada(boto19,cuadro9,0,0,2,2);
     }//GEN-LAST:event_boto19ActionPerformed
 
     private void boto29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto29ActionPerformed
-coordenada(boto29,matriz9,1,0,2,2);
+juego.coordenada(boto29,cuadro9,1,0,2,2);
     }//GEN-LAST:event_boto29ActionPerformed
 
     private void boto39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto39ActionPerformed
-coordenada(boto39,matriz9,2,0,2,2);
+juego.coordenada(boto39,cuadro9,2,0,2,2);
     }//GEN-LAST:event_boto39ActionPerformed
 
     private void boto49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto49ActionPerformed
-coordenada(boto49,matriz9,0,1,2,2);
+juego.coordenada(boto49,cuadro9,0,1,2,2);
     }//GEN-LAST:event_boto49ActionPerformed
 
     private void boto59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto59ActionPerformed
-coordenada(boto59,matriz9,1,1,2,2);
+juego.coordenada(boto59,cuadro9,1,1,2,2);
     }//GEN-LAST:event_boto59ActionPerformed
          
 
