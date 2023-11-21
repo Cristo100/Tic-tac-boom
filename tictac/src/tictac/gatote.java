@@ -41,55 +41,24 @@ public class gatote{
 
 
  //COORDENADAS: Cada que se pulse un boton, se completara un turno.
-public void coordenada(javax.swing.JButton button, gatito cuadro, int x, int y, int gany, int ganx) {
-    if (juego_ganado) {
-        return; // Impide seguir jugando después de ganar.
-    }
-    if (matriz_ganadora[ganx][gany] != 0) {
-        return; // Impide seguir jugando en una matriz victoriosa.
-    }
-
-    // Caso de estar disponible el gato:
-    int[][] matriz = cuadro.getMatriz();
+ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx) {
+    if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
+    if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
+    
+    //Caso de estar disponible el gato:
     if (matriz[x][y] == 0) {
         if (turno) {
             matriz[x][y] = 1;
             color_boton = Color.RED;
         } else {
             matriz[x][y] = 2;
-            color_boton = Color.BLUE;
+            color_boton = Color.BLUE; 
         }
         button.setBackground(color_boton);
         turno = !turno;
 
         // Llamada de otros métodos.
         verificacion();
-
-        // Cambio de turno para el siguiente movimiento
-        if (!juego_ganado) {
-            // Aquí aplicamos la lógica que mencionaste
-            int siguienteFila = -1;
-            int siguienteColumna = -1;
-
-            // Si X jugó en el cuadro 5 en la posición (1,0)
-            if (x == 1 && y == 0) {
-                // O debe jugar en el cuadro 4 en la posición (0,1)
-                siguienteFila = 0;
-                siguienteColumna = 1;
-            }
-            // Si O jugó en el cuadro 4 en la posición (0,1)
-            else if (x == 0 && y == 1) {
-                // X debe jugar en el cuadro 2 en la posición (1,0)
-                siguienteFila = 1;
-                siguienteColumna = 0;
-            }
-
-            // Realizar el movimiento automáticamente en el siguiente cuadro
-            if (siguienteFila != -1 && siguienteColumna != -1) {
-                gatito siguienteCuadro = gran_matriz[siguienteFila][siguienteColumna];
-                coordenada(null, siguienteCuadro, 1, 1, siguienteFila, siguienteColumna);
-            }
-        }
     }
 }
 }
