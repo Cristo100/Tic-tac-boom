@@ -17,5 +17,6 @@ public class gatito {
     public int[][] getMatriz() {
         return matriz;
     }
+    
 
 }

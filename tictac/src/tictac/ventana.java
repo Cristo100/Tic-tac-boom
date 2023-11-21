@@ -7,12 +7,12 @@ public class ventana extends javax.swing.JFrame {
     // Declarar las instancias de gatito y gatote como variables de instancia
     private gatito cuadro1, cuadro2, cuadro3, cuadro4, cuadro5, cuadro6, cuadro7, cuadro8, cuadro9;
     private gatote juego;
-
+    
     // Constructor de la ventana
     public ventana() {
         initComponents(); // Aquí deberías tener la inicialización de componentes de tu GUI
 
-        // Inicializar las instancias de gatito y gatote en el constructor
+        //Creacion de gatitos (los 9 juegos pequeños)
         cuadro1 = new gatito();
         cuadro2 = new gatito();
         cuadro3 = new gatito();
@@ -22,10 +22,9 @@ public class ventana extends javax.swing.JFrame {
         cuadro7 = new gatito();
         cuadro8 = new gatito();
         cuadro9 = new gatito();
-
+        //Creacion de gatote (El tres en raya compuesto por los 9 gatitos anteriores)
         juego = new gatote();
-
-        // Posicionamiento de gatitos en gatote:
+        //Posicionamiento de gatitos en gatote:
         juego.setGatito(0, 0, cuadro1);
         juego.setGatito(0, 1, cuadro2);
         juego.setGatito(0, 2, cuadro3);
@@ -37,8 +36,8 @@ public class ventana extends javax.swing.JFrame {
         juego.setGatito(2, 2, cuadro9);
     }
 
-
 //METODOS BOTONES:
+    //REINICIAR:
     private void reinicio_total() {
         //Ganadores
         for (int i = 0; i < juego.matriz_ganadora.length; i++) {
@@ -65,6 +64,8 @@ public class ventana extends javax.swing.JFrame {
                 }}
     juego.juego_ganado = false;
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -32,11 +32,12 @@ public class gatote{
     public void setGatito(int fila, int columna, gatito cuadro) {
         gran_matriz[fila][columna] = cuadro;
     }
-
     public gatito getGatito(int fila, int columna) {
         return gran_matriz[fila][columna];
     }
-            
+
+//VERIFICACIONES:
+   
     public void verificacion() {
         for (int i = 0; i < gran_matriz.length; i++) {
             for (int j = 0; j < gran_matriz[i].length; j++) {
@@ -53,37 +54,7 @@ public class gatote{
         }
     }
 
-    // Método auxiliar para verificar ganador en una matriz
-    private boolean verifica_ganador(gatito cuadro) {
-        int[][] matriz = cuadro.getMatriz();
-
-        for (int i = 0; i < 3; i++) {
-            // Verificar filas y columnas
-            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-                return true;
-            }
-            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-                return true;
-            }
-        }
-        // Verificar diagonales
-        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-            return true;
-        }
-        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean verifica_ganador(int[][] matriz) {
-        // Método de verificación del ganador en el juego global
-        // Puedes implementarlo de acuerdo a tus necesidades
-        return false;
-    }
-    
-
- //COORDENADAS.
+ //COORDENADAS: Cada que se pulse un boton, se completara un turno.
 public void coordenada(javax.swing.JButton button, gatito cuadro, int x, int y, int gany, int ganx) {
     if (juego_ganado) {return;} // Impide seguir jugando después de ganar.
     if (matriz_ganadora[ganx][gany] != 0) {return;} // Impide seguir jugando en una matriz victoriosa.
@@ -105,6 +76,30 @@ public void coordenada(javax.swing.JButton button, gatito cuadro, int x, int y, 
         verificacion();
     }
 }
+
+    // Método auxiliar para verificar ganador en una matriz
+    private boolean verifica_ganador(gatito cuadro) {
+        int[][] matriz = cuadro.getMatriz();
+
+        for (int i = 0; i < 3; i++) {
+          // Verificar filas y columnas
+            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
+                return true;}
+            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
+                return true;}
+        }// Verificar diagonales
+        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
+            return true;}
+        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
+            return true;}
+        return false;
+    }
+
+    private boolean verifica_ganador(int[][] matriz) {
+        // Método de verificación del ganador en el juego global
+        // Puedes implementarlo de acuerdo a tus necesidades
+        return false;
+    }
     
     
     
