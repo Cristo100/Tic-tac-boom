@@ -1,13 +1,21 @@
 package tictac;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public class ventana extends javax.swing.JFrame {
+public class ventana extends javax.swing.JFrame implements Serializable {
 //Creacion de variables:
         boolean turno = true;
         Color color_boton;
+        private EstadoJuego estadoJuego;
 
+       
         //Creacion de matrices:
         private int[][] matriz1 = new int[3][3];
         private int[][] matriz2 = new int[3][3];
@@ -102,10 +110,6 @@ public void verificacion() {
 // 3- Ejecutar jugadas: (llamada de lo anterior y cambio de matrices)
 //--------------------------
  public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y) {
-    // Verifica si ya hay un ganador en esta matriz
-    if (matriz_ganadora[x][y] != 0) {
-        return;
-    }
     if (matriz[x][y] == 0) {
         if (turno) {
             matriz[x][y] = 1;
@@ -119,13 +123,57 @@ public void verificacion() {
 
         // Llamada de otros métodos.
         verificacion();
+        guardarEstado("guardado.dat"); // Guarda el estado después de cada jugada
     }
 }
+    // Método para obtener el estado actual del juego
+    public EstadoJuego obtenerEstadoActualDelJuego() {
+        // Configura el estadoJuego con la información actual de tu ventana
+        estadoJuego.setTurno(turno);
+        estadoJuego.setColorBoton(color_boton);
+        // Configura otros atributos según sea necesario...
+        return estadoJuego;
+    }
+ 
+
+    // Método para establecer el estado del juego
+    public void establecerEstadoDelJuego(EstadoJuego estado) {
+        // Restaura la información en tu ventana según el estado proporcionado
+        turno = estado.isTurno();
+        color_boton = estado.getColorBoton();
+        // Restaura otros atributos según sea necesario...
+        // Actualiza la interfaz gráfica
+        // Llamada de otros métodos que puedan ser necesarios después de cargar el estado
+        verificacion();
+    }
+
+    
+    // Métodos para guardar y cargar el estado del juego
+    public void guardarEstado(String nombreArchivo) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
+            EstadoJuego estadoActual = obtenerEstadoActualDelJuego();
+            outputStream.writeObject(estadoActual);
+            System.out.println("Juego guardado exitosamente.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cargarEstado(String nombreArchivo) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
+            EstadoJuego estadoCargado = (EstadoJuego) inputStream.readObject();
+            establecerEstadoDelJuego(estadoCargado);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
         
 //---------------------------------
     public ventana() {
         initComponents();
+        // Proporciona los argumentos necesarios al crear la instancia de EstadoJuego
+        estadoJuego = new EstadoJuego(false, Color.WHITE);  // Por ejemplo, falso para turno y Color.WHITE para color_boton
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -217,6 +265,8 @@ public void verificacion() {
         boto49 = new javax.swing.JButton();
         boto59 = new javax.swing.JButton();
         resultados = new javax.swing.JLabel();
+        GuardarPartida = new javax.swing.JButton();
+        ReanudarPartida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic Tac Toe");
@@ -225,7 +275,6 @@ public void verificacion() {
         jPanel1.setBackground(new java.awt.Color(125, 187, 216));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tic Tac Toe");
         jLabel1.setToolTipText("");
@@ -244,63 +293,54 @@ public void verificacion() {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        boto1.setBackground(new java.awt.Color(255, 255, 255));
         boto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto1ActionPerformed(evt);
             }
         });
 
-        boto2.setBackground(new java.awt.Color(255, 255, 255));
         boto2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto2ActionPerformed(evt);
             }
         });
 
-        boto3.setBackground(new java.awt.Color(255, 255, 255));
         boto3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto3ActionPerformed(evt);
             }
         });
 
-        boto4.setBackground(new java.awt.Color(255, 255, 255));
         boto4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto4ActionPerformed(evt);
             }
         });
 
-        boto5.setBackground(new java.awt.Color(255, 255, 255));
         boto5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto5ActionPerformed(evt);
             }
         });
 
-        boto6.setBackground(new java.awt.Color(255, 255, 255));
         boto6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto6ActionPerformed(evt);
             }
         });
 
-        boto7.setBackground(new java.awt.Color(255, 255, 255));
         boto7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto7ActionPerformed(evt);
             }
         });
 
-        boto8.setBackground(new java.awt.Color(255, 255, 255));
         boto8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto8ActionPerformed(evt);
             }
         });
 
-        boto9.setBackground(new java.awt.Color(255, 255, 255));
         boto9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto9ActionPerformed(evt);
@@ -321,504 +361,432 @@ public void verificacion() {
             }
         });
 
-        boto12.setBackground(new java.awt.Color(255, 255, 255));
         boto12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto12ActionPerformed(evt);
             }
         });
 
-        boto22.setBackground(new java.awt.Color(255, 255, 255));
         boto22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto22ActionPerformed(evt);
             }
         });
 
-        boto32.setBackground(new java.awt.Color(255, 255, 255));
         boto32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto32ActionPerformed(evt);
             }
         });
 
-        boto42.setBackground(new java.awt.Color(255, 255, 255));
         boto42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto42ActionPerformed(evt);
             }
         });
 
-        boto52.setBackground(new java.awt.Color(255, 255, 255));
         boto52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto52ActionPerformed(evt);
             }
         });
 
-        boto62.setBackground(new java.awt.Color(255, 255, 255));
         boto62.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto62ActionPerformed(evt);
             }
         });
 
-        boto72.setBackground(new java.awt.Color(255, 255, 255));
         boto72.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto72ActionPerformed(evt);
             }
         });
 
-        boto82.setBackground(new java.awt.Color(255, 255, 255));
         boto82.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto82ActionPerformed(evt);
             }
         });
 
-        boto92.setBackground(new java.awt.Color(255, 255, 255));
         boto92.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto92ActionPerformed(evt);
             }
         });
 
-        boto23.setBackground(new java.awt.Color(255, 255, 255));
         boto23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto23ActionPerformed(evt);
             }
         });
 
-        boto33.setBackground(new java.awt.Color(255, 255, 255));
         boto33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto33ActionPerformed(evt);
             }
         });
 
-        boto43.setBackground(new java.awt.Color(255, 255, 255));
         boto43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto43ActionPerformed(evt);
             }
         });
 
-        boto53.setBackground(new java.awt.Color(255, 255, 255));
         boto53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto53ActionPerformed(evt);
             }
         });
 
-        boto63.setBackground(new java.awt.Color(255, 255, 255));
         boto63.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto63ActionPerformed(evt);
             }
         });
 
-        boto73.setBackground(new java.awt.Color(255, 255, 255));
         boto73.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto73ActionPerformed(evt);
             }
         });
 
-        boto83.setBackground(new java.awt.Color(255, 255, 255));
         boto83.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto83ActionPerformed(evt);
             }
         });
 
-        boto93.setBackground(new java.awt.Color(255, 255, 255));
         boto93.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto93ActionPerformed(evt);
             }
         });
 
-        boto13.setBackground(new java.awt.Color(255, 255, 255));
         boto13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto13ActionPerformed(evt);
             }
         });
 
-        boto24.setBackground(new java.awt.Color(255, 255, 255));
         boto24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto24ActionPerformed(evt);
             }
         });
 
-        boto34.setBackground(new java.awt.Color(255, 255, 255));
         boto34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto34ActionPerformed(evt);
             }
         });
 
-        boto44.setBackground(new java.awt.Color(255, 255, 255));
         boto44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto44ActionPerformed(evt);
             }
         });
 
-        boto54.setBackground(new java.awt.Color(255, 255, 255));
         boto54.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto54ActionPerformed(evt);
             }
         });
 
-        boto64.setBackground(new java.awt.Color(255, 255, 255));
         boto64.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto64ActionPerformed(evt);
             }
         });
 
-        boto74.setBackground(new java.awt.Color(255, 255, 255));
         boto74.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto74ActionPerformed(evt);
             }
         });
 
-        boto84.setBackground(new java.awt.Color(255, 255, 255));
         boto84.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto84ActionPerformed(evt);
             }
         });
 
-        boto94.setBackground(new java.awt.Color(255, 255, 255));
         boto94.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto94ActionPerformed(evt);
             }
         });
 
-        boto14.setBackground(new java.awt.Color(255, 255, 255));
         boto14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto14ActionPerformed(evt);
             }
         });
 
-        boto75.setBackground(new java.awt.Color(255, 255, 255));
         boto75.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto75ActionPerformed(evt);
             }
         });
 
-        boto85.setBackground(new java.awt.Color(255, 255, 255));
         boto85.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto85ActionPerformed(evt);
             }
         });
 
-        boto95.setBackground(new java.awt.Color(255, 255, 255));
         boto95.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto95ActionPerformed(evt);
             }
         });
 
-        boto15.setBackground(new java.awt.Color(255, 255, 255));
         boto15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto15ActionPerformed(evt);
             }
         });
 
-        boto25.setBackground(new java.awt.Color(255, 255, 255));
         boto25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto25ActionPerformed(evt);
             }
         });
 
-        boto35.setBackground(new java.awt.Color(255, 255, 255));
         boto35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto35ActionPerformed(evt);
             }
         });
 
-        boto45.setBackground(new java.awt.Color(255, 255, 255));
         boto45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto45ActionPerformed(evt);
             }
         });
 
-        boto55.setBackground(new java.awt.Color(255, 255, 255));
         boto55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto55ActionPerformed(evt);
             }
         });
 
-        boto65.setBackground(new java.awt.Color(255, 255, 255));
         boto65.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto65ActionPerformed(evt);
             }
         });
 
-        boto66.setBackground(new java.awt.Color(255, 255, 255));
         boto66.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto66ActionPerformed(evt);
             }
         });
 
-        boto76.setBackground(new java.awt.Color(255, 255, 255));
         boto76.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto76ActionPerformed(evt);
             }
         });
 
-        boto86.setBackground(new java.awt.Color(255, 255, 255));
         boto86.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto86ActionPerformed(evt);
             }
         });
 
-        boto96.setBackground(new java.awt.Color(255, 255, 255));
         boto96.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto96ActionPerformed(evt);
             }
         });
 
-        boto16.setBackground(new java.awt.Color(255, 255, 255));
         boto16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto16ActionPerformed(evt);
             }
         });
 
-        boto26.setBackground(new java.awt.Color(255, 255, 255));
         boto26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto26ActionPerformed(evt);
             }
         });
 
-        boto36.setBackground(new java.awt.Color(255, 255, 255));
         boto36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto36ActionPerformed(evt);
             }
         });
 
-        boto46.setBackground(new java.awt.Color(255, 255, 255));
         boto46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto46ActionPerformed(evt);
             }
         });
 
-        boto56.setBackground(new java.awt.Color(255, 255, 255));
         boto56.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto56ActionPerformed(evt);
             }
         });
 
-        boto67.setBackground(new java.awt.Color(255, 255, 255));
         boto67.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto67ActionPerformed(evt);
             }
         });
 
-        boto77.setBackground(new java.awt.Color(255, 255, 255));
         boto77.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto77ActionPerformed(evt);
             }
         });
 
-        boto87.setBackground(new java.awt.Color(255, 255, 255));
         boto87.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto87ActionPerformed(evt);
             }
         });
 
-        boto97.setBackground(new java.awt.Color(255, 255, 255));
         boto97.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto97ActionPerformed(evt);
             }
         });
 
-        boto17.setBackground(new java.awt.Color(255, 255, 255));
         boto17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto17ActionPerformed(evt);
             }
         });
 
-        boto27.setBackground(new java.awt.Color(255, 255, 255));
         boto27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto27ActionPerformed(evt);
             }
         });
 
-        boto37.setBackground(new java.awt.Color(255, 255, 255));
         boto37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto37ActionPerformed(evt);
             }
         });
 
-        boto47.setBackground(new java.awt.Color(255, 255, 255));
         boto47.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto47ActionPerformed(evt);
             }
         });
 
-        boto57.setBackground(new java.awt.Color(255, 255, 255));
         boto57.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto57ActionPerformed(evt);
             }
         });
 
-        boto68.setBackground(new java.awt.Color(255, 255, 255));
         boto68.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto68ActionPerformed(evt);
             }
         });
 
-        boto78.setBackground(new java.awt.Color(255, 255, 255));
         boto78.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto78ActionPerformed(evt);
             }
         });
 
-        boto88.setBackground(new java.awt.Color(255, 255, 255));
         boto88.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto88ActionPerformed(evt);
             }
         });
 
-        boto98.setBackground(new java.awt.Color(255, 255, 255));
         boto98.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto98ActionPerformed(evt);
             }
         });
 
-        boto18.setBackground(new java.awt.Color(255, 255, 255));
         boto18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto18ActionPerformed(evt);
             }
         });
 
-        boto28.setBackground(new java.awt.Color(255, 255, 255));
         boto28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto28ActionPerformed(evt);
             }
         });
 
-        boto38.setBackground(new java.awt.Color(255, 255, 255));
         boto38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto38ActionPerformed(evt);
             }
         });
 
-        boto48.setBackground(new java.awt.Color(255, 255, 255));
         boto48.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto48ActionPerformed(evt);
             }
         });
 
-        boto58.setBackground(new java.awt.Color(255, 255, 255));
         boto58.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto58ActionPerformed(evt);
             }
         });
 
-        boto69.setBackground(new java.awt.Color(255, 255, 255));
         boto69.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto69ActionPerformed(evt);
             }
         });
 
-        boto79.setBackground(new java.awt.Color(255, 255, 255));
         boto79.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto79ActionPerformed(evt);
             }
         });
 
-        boto89.setBackground(new java.awt.Color(255, 255, 255));
         boto89.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto89ActionPerformed(evt);
             }
         });
 
-        boto99.setBackground(new java.awt.Color(255, 255, 255));
         boto99.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto99ActionPerformed(evt);
             }
         });
 
-        boto19.setBackground(new java.awt.Color(255, 255, 255));
         boto19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto19ActionPerformed(evt);
             }
         });
 
-        boto29.setBackground(new java.awt.Color(255, 255, 255));
         boto29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto29ActionPerformed(evt);
             }
         });
 
-        boto39.setBackground(new java.awt.Color(255, 255, 255));
         boto39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto39ActionPerformed(evt);
             }
         });
 
-        boto49.setBackground(new java.awt.Color(255, 255, 255));
         boto49.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto49ActionPerformed(evt);
             }
         });
 
-        boto59.setBackground(new java.awt.Color(255, 255, 255));
         boto59.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boto59ActionPerformed(evt);
@@ -828,15 +796,29 @@ public void verificacion() {
         resultados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultados.setText("-JUGANDO-");
 
+        GuardarPartida.setText("Guardar");
+        GuardarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarPartidaActionPerformed(evt);
+            }
+        });
+
+        ReanudarPartida.setText("Reanudar");
+        ReanudarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReanudarPartidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(218, 218, 218)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -1031,7 +1013,10 @@ public void verificacion() {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(boto69, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GuardarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ReanudarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -1197,13 +1182,21 @@ public void verificacion() {
                             .addComponent(boto89, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto99, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto79, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reinicioboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salirboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(reinicioboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salirboton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(GuardarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ReanudarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1551,6 +1544,16 @@ coordenada(boto49,matriz9,0,1);
     private void boto59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto59ActionPerformed
 coordenada(boto59,matriz9,1,1);
     }//GEN-LAST:event_boto59ActionPerformed
+
+    private void GuardarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarPartidaActionPerformed
+        guardarEstado("guardado.dat");
+        JOptionPane.showMessageDialog(this, "Partida guardada exitosamente.");
+    }//GEN-LAST:event_GuardarPartidaActionPerformed
+
+    private void ReanudarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReanudarPartidaActionPerformed
+        cargarEstado("guardado.dat");
+        JOptionPane.showMessageDialog(this, "Partida cargada exitosamente.");
+    }//GEN-LAST:event_ReanudarPartidaActionPerformed
          
 
     public static void main(String args[]) {
@@ -1581,6 +1584,8 @@ coordenada(boto59,matriz9,1,1);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GuardarPartida;
+    private javax.swing.JButton ReanudarPartida;
     private javax.swing.JButton boto1;
     private javax.swing.JButton boto12;
     private javax.swing.JButton boto13;
