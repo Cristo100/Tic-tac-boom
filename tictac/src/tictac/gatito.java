@@ -12,11 +12,9 @@ public class gatito {
         this.matriz = new int[3][3];
     }
 
-    
 //Metodos-------------------------------------------------------------
     public int[][] getMatriz() {
         return matriz;
     }
-    
 
 }

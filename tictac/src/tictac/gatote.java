@@ -4,8 +4,6 @@ package tictac;
 import java.awt.Color;
 import javax.swing.*;
 
-
-
 public class gatote{
 //ATRIBUTOS--------------------------------------------------------------------------------------
             //Componentes del juego:
@@ -14,7 +12,6 @@ public class gatote{
             int[][] matriz_ganadora = new int[3][3];
             boolean juego_ganado;
             gatito[][] gran_matriz;
-            JLabel resultados;
 
 //Constructor-----------------------------------------------------------------------
     public gatote() {
@@ -22,7 +19,6 @@ public class gatote{
         this.turno = true;
         this.color_boton = Color.RED;
         this.gran_matriz = new gatito[3][3];
-        resultados = new JLabel("-JUGANDO-");
 
         // Inicializar cada posición de la matriz con un nuevo objeto gatito
         for (int i = 0; i < 3; i++) {
@@ -96,55 +92,6 @@ public void coordenada(javax.swing.JButton button, gatito cuadro, int x, int y, 
         }
     }
 }
-
-
-
-    // Método de verificación
-// Método de verificación
-public void verificacion() {
-    for (int i = 0; i < gran_matriz.length; i++) {
-        for (int j = 0; j < gran_matriz[i].length; j++) {
-            if (matriz_ganadora[i][j] == 0 && verifica_ganador(gran_matriz[i][j].getMatriz())) {
-                matriz_ganadora[i][j] = turno ? 2 : 1;
-                System.out.println("Jugador " + (turno ? "O" : "X") + " ganador en: fila " + (i + 1) + " / columna: " + (j + 1));
-            }
-        }
-    }
-
-    if (verifica_ganador(matriz_ganadora)) {
-        // Cambiar el texto del JLabel
-        resultados.setText((turno ? "O" : "X") + " Gano la partida");
-        juego_ganado = true;
-        return;
-    } else {
-        // Si no hay ganador, puedes cambiar el texto a "-JUGANDO-"
-        resultados.setText("-JUGANDO-");
-    }
-}
-
-    // Método privado de verificación de ganador en una matriz
-    private boolean verifica_ganador(int[][] matriz) {
-        for (int i = 0; i < 3; i++) {
-            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-                return true;
-            }
-            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-                return true;
-            }
-        }
-        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-            return true;
-        }
-        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-            return true;
-        }
-        return false;
-    }
-    
-    
-    
-    
-    
 }
     
     
