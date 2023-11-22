@@ -12,7 +12,7 @@ public class gatote{
             int[][] matriz_ganadora = new int[3][3];
             boolean juego_ganado;
             gatito[][] gran_matriz;
-            javax.swing.JLabel resultados;
+            private javax.swing.JLabel resultados;
 
 //Constructor-----------------------------------------------------------------------
     public gatote() {
@@ -43,7 +43,7 @@ public class gatote{
 
 
  //COORDENADAS: Cada que se pulse un boton, se completara un turno.
- public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx) {
+public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx) {
     if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
     if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
     
@@ -63,6 +63,7 @@ public class gatote{
         verificacion();
     }
 }
+
  
  public void verificacion() {
     for (int i = 0; i < gran_matriz.length; i++) {                          //Verificacion de ganador en solo un cuadro (ciclos de filas y columnas)
@@ -72,12 +73,11 @@ public class gatote{
                 System.out.println("Jugador " + (turno ? "O" : "X") + " ganador en: fila " + (i + 1) + " / columna: " + (j + 1));
             }}}
     if (verifica_ganador(matriz_ganadora)) {            //GANADOR SUPREMO
-        // Cambiar el texto del JLabel
-        resultados.setText((turno ? "O" : "X") + " Gano la partida");
+//        resultados.setText((turno ? "O" : "X") + " Gano la partida");
         juego_ganado = true;
         return;
     } else {
-        resultados.setText("-JUGANDO-");
+//         resultados.setText("-JUGANDO-");
     }
 }
 
@@ -96,6 +96,9 @@ public class gatote{
         return false;
     }
  
+    
+    
+    
 }
     
     
