@@ -1,6 +1,6 @@
 # Tic-tac-boom
 
-#Entrega 1 (15/11/23)
+# Entrega 1 (15/11/23)
 Para tener el juego de forma accesible y presentable se desarrollo dentro de JFrame form una representacion del juego exacata a lo solicitado para la actividad,
 teniendo las 81 opciones en el que un jugador puede apretar junto a las alternativas de reiniciar el juego y salir de la ventana.
 
@@ -36,14 +36,14 @@ Este metodo es utilizado en el boton de reinicio para hacer que todas las variab
 ![image](https://github.com/Cristo100/Tic-tac-boom/assets/135175850/6bb70054-537a-4bac-a020-0207e2918167)
 
 
-#Entrega 2 (22/11/23)
-###Implementacion de clases.
+# Entrega 2 (22/11/23)
+### Implementacion de clases.
 Con un 3 en raya ya funcional, se implementó el uso de clases como en el diseño, teniendo separando la ventana, los 9 juegos individuales (gatito) y la gran matriz (gatote). En ventana se crean 9 objetos gatito y un objeto gatote, luego se incluye lo previamente creado a la gran matriz para tener definido las coordenadas del juego completo. Por el momento, gatote posee la mayoria de metodos, proximamente habra un orden respecto a la posicion y llamamente de estos (por ejemplo, verificacion() es respecto a una matriz 3x3, por lo que deberia estar en la clase gatito)
 
-###Guardar:
+### Guardar:
 Este método guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creo un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
 
-###Método cargarEstado :
+### Método cargarEstado :
 Este método carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
 
 
