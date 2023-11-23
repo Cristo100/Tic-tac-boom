@@ -40,11 +40,28 @@ Este metodo es utilizado en el boton de reinicio para hacer que todas las variab
 ### Implementacion de clases.
 Con un 3 en raya ya funcional, se implementó el uso de clases como en el diseño, teniendo separando la ventana, los 9 juegos individuales (gatito) y la gran matriz (gatote). En ventana se crean 9 objetos gatito y un objeto gatote, luego se incluye lo previamente creado a la gran matriz para tener definido las coordenadas del juego completo. Por el momento, gatote posee la mayoria de metodos, proximamente habra un orden respecto a la posicion y llamamente de estos (por ejemplo, verificacion() es respecto a una matriz 3x3, por lo que deberia estar en la clase gatito)
 
-### Guardar:
-Este método guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creo un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
+## Guardar y cargar
+### Nuevas Bibliotecas:
+Para que la implementacion de guardar y cargar el juego sea exitosa, se importaron nuevas bibliotecas.
+<br>
+**java.io.File:** manipular información sobre archivos y directorios en el sistema de archivos.
+<br>
+**java.io.FileWriter:** Escribir caracteres en un archivo.
+<br>
+**java.io.IOException:** Manejar errores relacionados con operaciones de lectura o escritura (tiene una funcionalidad respecto a las excepciones.)
+<br>
+**java.io.PrintWriter:** Se utiliza para escribir datos formateados a archivos de texto.
+<br>
+**java.util.Scanner:** Lectura de la entrada estándar del teclado, archivos o cadenas de texto.
 
-### Método cargarEstado :
-Este método carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
+
+### Guardar:
+Dentro de la ventana, se creó el método cargaEstado(),  guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creó un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
+
+###Cargar:
+Dentro de la ventana, se creó el método cargaEstado(), este carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
+<br><br>
+De momento el guardar y cargar funcionan exitosamente a excepcion de la modificacion del color de los botones dentro del juego, se puede ver que existe un registro tras cargar en las matrices donde ya hubo un ganador e intentar hacer una jugada sobre ellos.
 
 
 
