@@ -1,4 +1,6 @@
 # Tic-tac-boom
+
+#Entrega 1 (15/11/23)
 Para tener el juego de forma accesible y presentable se desarrollo dentro de JFrame form una representacion del juego exacata a lo solicitado para la actividad,
 teniendo las 81 opciones en el que un jugador puede apretar junto a las alternativas de reiniciar el juego y salir de la ventana.
 
@@ -20,8 +22,7 @@ Respecto a las librerias importadas para el trabajo:
 ### Metodos:
 #### verifica_ganador(int[][] matriz):
 Entre las acciones importantes dentro de una matriz base es saber si al momento de hacer algun cambio cause la victoria para alguno de
-los jugadores, por lo que se identifican los posibles caso de victoria y se cambian los valores dependiendo del ganador (en nuestro caso es 0 si se puede jugar, 1 si gano X y
-2 si ganó O).
+los jugadores, por lo que se identifican los posibles caso de victoria y se cambian los valores dependiendo del ganador (en nuestro caso es 0 si se puede jugar, 1 si gano X y 2 si ganó O).
 
 #### verificacion():
 Una vez revisado que hubo un ganador en una de las matrices base gracias a "verifica_ganador(int[][] matriz)", se anuncia este ganador y a la vez se verifica si hubo un "ganador definitivo" dentro de la gran matriz utilizando dentro de este metodo "verifica_ganador(matriz_ganadora)" haciendo que si ese es el caso se anuncie por la ventana y niegue que se puedan hacer nuevas puntuaciones al convertir "juego_ganado" a verdadero.
@@ -33,3 +34,28 @@ Cada boton que simboliza una opcion para marcar su signo dentro del juego posee 
 Este metodo es utilizado en el boton de reinicio para hacer que todas las variables y matrices vuelvan a su estado inicial previo al juego. Esto incluye la matriz ganadora, configuracion de botones y matrices base.<br>
 
 ![image](https://github.com/Cristo100/Tic-tac-boom/assets/135175850/6bb70054-537a-4bac-a020-0207e2918167)
+
+
+#Entrega 2 (22/11/23)
+###Implementacion de clases.
+Con un 3 en raya ya funcional, se implementó el uso de clases como en el diseño, teniendo separando la ventana, los 9 juegos individuales (gatito) y la gran matriz (gatote). En ventana se crean 9 objetos gatito y un objeto gatote, luego se incluye lo previamente creado a la gran matriz para tener definido las coordenadas del juego completo. Por el momento, gatote posee la mayoria de metodos, proximamente habra un orden respecto a la posicion y llamamente de estos (por ejemplo, verificacion() es respecto a una matriz 3x3, por lo que deberia estar en la clase gatito)
+
+###Guardar:
+Este método guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creo un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
+
+###Método cargarEstado :
+Este método carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
