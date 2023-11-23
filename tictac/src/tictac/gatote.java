@@ -2,7 +2,6 @@
 package tictac;
 
 import java.awt.Color;
-import javax.swing.*;
 
 public class gatote{
 //ATRIBUTOS--------------------------------------------------------------------------------------
@@ -12,11 +11,9 @@ public class gatote{
             int[][] matriz_ganadora = new int[3][3];
             boolean juego_ganado;
             gatito[][] gran_matriz;
-            private javax.swing.JLabel resultados;
 
 //Constructor-----------------------------------------------------------------------
     public gatote() {
-        this.resultados = resultados;
         boolean juego_ganado = false;
         this.turno = true;
         this.color_boton = Color.RED;
@@ -43,7 +40,8 @@ public class gatote{
 
 
  //COORDENADAS: Cada que se pulse un boton, se completara un turno.
-public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx) {
+//                                    boton que se ejecuta / gatito/ fila gatito / columna gatito / matriz ganadora y / matriz ganadora X / texto ganador.
+public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados) {
     if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
     if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
     
@@ -60,12 +58,12 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
         turno = !turno;
 
         // Llamada de otros métodos.
-        verificacion();
+        verificacion(resultados);
     }
 }
 
  
- public void verificacion() {
+ public void verificacion(javax.swing.JLabel resultados) {
     for (int i = 0; i < gran_matriz.length; i++) {                          //Verificacion de ganador en solo un cuadro (ciclos de filas y columnas)
         for (int j = 0; j < gran_matriz[i].length; j++) {
             if (matriz_ganadora[i][j] == 0 && verifica_ganador(gran_matriz[i][j].getMatriz())) {
@@ -73,11 +71,11 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
                 System.out.println("Jugador " + (turno ? "O" : "X") + " ganador en: fila " + (i + 1) + " / columna: " + (j + 1));
             }}}
     if (verifica_ganador(matriz_ganadora)) {            //GANADOR SUPREMO
-//        resultados.setText((turno ? "O" : "X") + " Gano la partida");
+        resultados.setText((turno ? "O" : "X") + " Gana la partida");
         juego_ganado = true;
         return;
     } else {
-//         resultados.setText("-JUGANDO-");
+        resultados.setText("-JUGANDO-");
     }
 }
 
@@ -95,10 +93,6 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
             return true;}
         return false;
     }
- 
-    
-    
-    
 }
     
     
