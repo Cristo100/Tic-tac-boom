@@ -44,7 +44,7 @@ Con un 3 en raya ya funcional, se implementó el uso de clases como en el diseñ
 ### Nuevas Bibliotecas:
 Para que la implementacion de guardar y cargar el juego sea exitosa, se importaron nuevas bibliotecas.
 <br>
-**java.io.File:** manipular información sobre archivos y directorios en el sistema de archivos.
+**java.io.File:** Manipular información sobre archivos y directorios en el sistema de archivos.
 <br>
 **java.io.FileWriter:** Escribir caracteres en un archivo.
 <br>
