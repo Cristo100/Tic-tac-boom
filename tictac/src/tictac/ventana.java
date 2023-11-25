@@ -12,6 +12,7 @@ public class ventana extends javax.swing.JFrame {
     // Declarar las instancias de gatito y gatote como variables de instancia
     private gatito cuadro1, cuadro2, cuadro3, cuadro4, cuadro5, cuadro6, cuadro7, cuadro8, cuadro9;
     private gatote juego;
+    
     // Constructor de la ventana
     public ventana() {
         initComponents(); // Aquí deberías tener la inicialización de componentes de tu GUI
