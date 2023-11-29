@@ -44,7 +44,7 @@ public class gatotebot{
 
  //COORDENADAS: Cada que se pulse un boton, se completara un turno.
 //                                    boton que se ejecuta / gatito/ fila gatito / columna gatito / matriz ganadora y / matriz ganadora X / texto ganador.
-public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados) {
+public void coordenada(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados) {
     if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
     if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
     
@@ -52,12 +52,9 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
     if (matriz[x][y] == 0) {
         if (turno) {
             matriz[x][y] = 1;
-            color_boton = Color.RED;
         } else {
             matriz[x][y] = 2;
-            color_boton = Color.BLUE; 
         }
-        button.setBackground(color_boton);
         turno = !turno;
 
         // Llamada de otros métodos.
@@ -102,18 +99,7 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
     
     
     
-    //Datos aleatorios para la jugada del bot:
-   public int[] generarCoordenadasAleatorias() {
-        Random rand = new Random();
-        int fila, columna;
 
-        do {
-            fila = rand.nextInt(3);
-            columna = rand.nextInt(3);
-        } while (gran_matriz[fila][columna].getMatriz()[0][0] != 0);
-
-        return new int[]{fila, columna};
-    }
    
    
 }

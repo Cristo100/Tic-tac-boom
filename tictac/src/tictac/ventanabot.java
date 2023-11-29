@@ -39,9 +39,53 @@ public class ventanabot extends javax.swing.JFrame {
         juego.setGatito(2, 0, cuadro7);
         juego.setGatito(2, 1, cuadro8);
         juego.setGatito(2, 2, cuadro9);
-        
-    }
 
+    }
+    
+public void actualizarColoresBotones() {
+    for (int i = 0; i < juego.gran_matriz.length; i++) {
+        for (int j = 0; j < juego.gran_matriz[i].length; j++) {
+            gatito cuadro = juego.gran_matriz[i][j];
+            int[][] matrizCuadro = cuadro.getMatriz();
+            
+            for (int k = 0; k < matrizCuadro.length; k++) {
+                for (int l = 0; l < matrizCuadro[k].length; l++) {
+                    int valor = matrizCuadro[k][l];
+                    actualizarColorBoton(i, j, k, l, valor);
+                }
+            }
+        }
+    }
+}
+
+private void actualizarColorBoton(int cuadroX, int cuadroY, int fila, int columna, int valor) {
+    int numBoton = fila * 3 + columna + 1 + (cuadroX * 3 + cuadroY * 27);
+    String nombreBoton = "boto" + numBoton;
+
+    try {
+        Field field = getClass().getDeclaredField(nombreBoton);
+        JButton boton = (JButton) field.get(this);
+
+        if (valor == 1) {
+            boton.setBackground(Color.RED);
+        } else if (valor == 2) {
+            boton.setBackground(Color.BLUE);
+        } else {
+            // Puedes definir un color por defecto para otros valores, por ejemplo, blanco
+            boton.setBackground(Color.WHITE);
+        }
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        e.printStackTrace();
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
 //BOTONES DENTRO DE LA PAGINA:
     //REINICIAR:
     private void reinicio_total() {
@@ -137,15 +181,15 @@ public class ventanabot extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        boto1 = new javax.swing.JButton();
-        boto2 = new javax.swing.JButton();
-        boto3 = new javax.swing.JButton();
-        boto4 = new javax.swing.JButton();
-        boto5 = new javax.swing.JButton();
-        boto6 = new javax.swing.JButton();
-        boto7 = new javax.swing.JButton();
-        boto8 = new javax.swing.JButton();
-        boto9 = new javax.swing.JButton();
+        boto11 = new javax.swing.JButton();
+        boto21 = new javax.swing.JButton();
+        boto31 = new javax.swing.JButton();
+        boto41 = new javax.swing.JButton();
+        boto51 = new javax.swing.JButton();
+        boto61 = new javax.swing.JButton();
+        boto71 = new javax.swing.JButton();
+        boto81 = new javax.swing.JButton();
+        boto91 = new javax.swing.JButton();
         reinicioboton = new javax.swing.JButton();
         salirboton = new javax.swing.JButton();
         boto12 = new javax.swing.JButton();
@@ -223,6 +267,7 @@ public class ventanabot extends javax.swing.JFrame {
         resultados = new javax.swing.JLabel();
         guardar = new javax.swing.JButton();
         cargar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic Tac Toe");
@@ -250,66 +295,66 @@ public class ventanabot extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        boto1.setBackground(new java.awt.Color(255, 255, 255));
-        boto1.addActionListener(new java.awt.event.ActionListener() {
+        boto11.setBackground(new java.awt.Color(255, 255, 255));
+        boto11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto1ActionPerformed(evt);
+                boto11ActionPerformed(evt);
             }
         });
 
-        boto2.setBackground(new java.awt.Color(255, 255, 255));
-        boto2.addActionListener(new java.awt.event.ActionListener() {
+        boto21.setBackground(new java.awt.Color(255, 255, 255));
+        boto21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto2ActionPerformed(evt);
+                boto21ActionPerformed(evt);
             }
         });
 
-        boto3.setBackground(new java.awt.Color(255, 255, 255));
-        boto3.addActionListener(new java.awt.event.ActionListener() {
+        boto31.setBackground(new java.awt.Color(255, 255, 255));
+        boto31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto3ActionPerformed(evt);
+                boto31ActionPerformed(evt);
             }
         });
 
-        boto4.setBackground(new java.awt.Color(255, 255, 255));
-        boto4.addActionListener(new java.awt.event.ActionListener() {
+        boto41.setBackground(new java.awt.Color(255, 255, 255));
+        boto41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto4ActionPerformed(evt);
+                boto41ActionPerformed(evt);
             }
         });
 
-        boto5.setBackground(new java.awt.Color(255, 255, 255));
-        boto5.addActionListener(new java.awt.event.ActionListener() {
+        boto51.setBackground(new java.awt.Color(255, 255, 255));
+        boto51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto5ActionPerformed(evt);
+                boto51ActionPerformed(evt);
             }
         });
 
-        boto6.setBackground(new java.awt.Color(255, 255, 255));
-        boto6.addActionListener(new java.awt.event.ActionListener() {
+        boto61.setBackground(new java.awt.Color(255, 255, 255));
+        boto61.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto6ActionPerformed(evt);
+                boto61ActionPerformed(evt);
             }
         });
 
-        boto7.setBackground(new java.awt.Color(255, 255, 255));
-        boto7.addActionListener(new java.awt.event.ActionListener() {
+        boto71.setBackground(new java.awt.Color(255, 255, 255));
+        boto71.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto7ActionPerformed(evt);
+                boto71ActionPerformed(evt);
             }
         });
 
-        boto8.setBackground(new java.awt.Color(255, 255, 255));
-        boto8.addActionListener(new java.awt.event.ActionListener() {
+        boto81.setBackground(new java.awt.Color(255, 255, 255));
+        boto81.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto8ActionPerformed(evt);
+                boto81ActionPerformed(evt);
             }
         });
 
-        boto9.setBackground(new java.awt.Color(255, 255, 255));
-        boto9.addActionListener(new java.awt.event.ActionListener() {
+        boto91.setBackground(new java.awt.Color(255, 255, 255));
+        boto91.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boto9ActionPerformed(evt);
+                boto91ActionPerformed(evt);
             }
         });
 
@@ -849,6 +894,8 @@ public class ventanabot extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("JUGADOR VS COMPUTADORA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -856,50 +903,9 @@ public class ventanabot extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(boto7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(boto8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(boto9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(boto72, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(boto82, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(boto92, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(boto4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(boto1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(boto12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(boto42, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(boto22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(boto52, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(boto62, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(224, 224, 224)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(boto74, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -984,7 +990,52 @@ public class ventanabot extends javax.swing.JFrame {
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(boto58, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(boto68, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                                    .addComponent(boto68, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(boto71, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boto81, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boto91, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(boto72, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boto82, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boto92, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(boto41, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto51, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto61, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(boto11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto21, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto31, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(boto12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boto42, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(boto22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(boto52, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(boto62, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1073,28 +1124,30 @@ public class ventanabot extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(boto1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boto2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boto3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boto12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boto22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boto32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(boto11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boto21, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boto31, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boto12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boto22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boto32, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(boto4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(boto5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(boto6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(boto41, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boto51, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boto61, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(boto52, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(boto62, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(boto42, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(boto7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boto8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boto9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boto71, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boto81, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boto91, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto82, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto92, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boto72, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1246,61 +1299,42 @@ public class ventanabot extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salirbotonActionPerformed
 
-    private void boto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto1ActionPerformed
-    juego.coordenada(boto1, cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+    private void boto11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto11ActionPerformed
+    juego.coordenada(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+    actualizarColoresBotones();
+    }//GEN-LAST:event_boto11ActionPerformed
 
-    // Verifica si es el turno del bot y ejecuta coordenada aleatoria
-    while (!juego.turno && !juego.juego_ganado) {
-        int[] coordenadasAleatorias = juego.generarCoordenadasAleatorias();
-        int fila = coordenadasAleatorias[0];
-        int columna = coordenadasAleatorias[1];
+    private void boto21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto21ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),1,0,0,0,resultados);
+    }//GEN-LAST:event_boto21ActionPerformed
 
-        // Genera el nombre del botón aleatorio
-        String nombreBotonAleatorio = "boto" + (fila * 3 + columna + 1); // +1 para evitar cero
+    private void boto31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto31ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),2,0,0,0,resultados);
+    }//GEN-LAST:event_boto31ActionPerformed
 
-        // Encuentra el botón correspondiente usando reflection
-        try {
-            java.lang.reflect.Field field = getClass().getDeclaredField(nombreBotonAleatorio);
-            JButton botonAleatorio = (JButton) field.get(this);
+    private void boto41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto41ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),0,1,0,0,resultados);
+    }//GEN-LAST:event_boto41ActionPerformed
 
-            juego.coordenada(botonAleatorio, cuadro1.getMatriz(), fila, columna, 0, 0, resultados);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-    }//GEN-LAST:event_boto1ActionPerformed
+    private void boto51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto51ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),1,1,0,0,resultados);
+    }//GEN-LAST:event_boto51ActionPerformed
 
-    private void boto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto2ActionPerformed
-juego.coordenada(boto2,cuadro1.getMatriz(),1,0,0,0,resultados);
-    }//GEN-LAST:event_boto2ActionPerformed
+    private void boto61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto61ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),2,1,0,0,resultados);
+    }//GEN-LAST:event_boto61ActionPerformed
 
-    private void boto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto3ActionPerformed
-juego.coordenada(boto3,cuadro1.getMatriz(),2,0,0,0,resultados);
-    }//GEN-LAST:event_boto3ActionPerformed
+    private void boto71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto71ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),0,2,0,0,resultados);
+    }//GEN-LAST:event_boto71ActionPerformed
 
-    private void boto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto4ActionPerformed
-juego.coordenada(boto4,cuadro1.getMatriz(),0,1,0,0,resultados);
-    }//GEN-LAST:event_boto4ActionPerformed
+    private void boto81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto81ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),1,2,0,0,resultados);
+    }//GEN-LAST:event_boto81ActionPerformed
 
-    private void boto5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto5ActionPerformed
-juego.coordenada(boto5,cuadro1.getMatriz(),1,1,0,0,resultados);
-    }//GEN-LAST:event_boto5ActionPerformed
-
-    private void boto6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto6ActionPerformed
-juego.coordenada(boto6,cuadro1.getMatriz(),2,1,0,0,resultados);
-    }//GEN-LAST:event_boto6ActionPerformed
-
-    private void boto7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto7ActionPerformed
-juego.coordenada(boto7,cuadro1.getMatriz(),0,2,0,0,resultados);
-    }//GEN-LAST:event_boto7ActionPerformed
-
-    private void boto8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto8ActionPerformed
-juego.coordenada(boto8,cuadro1.getMatriz(),1,2,0,0,resultados);
-    }//GEN-LAST:event_boto8ActionPerformed
-
-    private void boto9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto9ActionPerformed
-juego.coordenada(boto9,cuadro1.getMatriz(),2,2,0,0,resultados);
-    }//GEN-LAST:event_boto9ActionPerformed
+    private void boto91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto91ActionPerformed
+juego.coordenada(cuadro1.getMatriz(),2,2,0,0,resultados);
+    }//GEN-LAST:event_boto91ActionPerformed
 
     private void reiniciobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciobotonActionPerformed
         //Creacion ventana emergente con JOptionPane
@@ -1312,291 +1346,291 @@ juego.coordenada(boto9,cuadro1.getMatriz(),2,2,0,0,resultados);
     }//GEN-LAST:event_reiniciobotonActionPerformed
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
-juego.coordenada(boto12,cuadro2.getMatriz(),0,0,1,0, resultados);
+juego.coordenada(cuadro2.getMatriz(),0,0,1,0, resultados);
     }//GEN-LAST:event_boto12ActionPerformed
 
     private void boto22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto22ActionPerformed
-juego.coordenada(boto22,cuadro2.getMatriz(),1,0,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),1,0,1,0,resultados);
     }//GEN-LAST:event_boto22ActionPerformed
 
     private void boto32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto32ActionPerformed
-juego.coordenada(boto32,cuadro2.getMatriz(),2,0,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),2,0,1,0,resultados);
     }//GEN-LAST:event_boto32ActionPerformed
 
     private void boto42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto42ActionPerformed
-juego.coordenada(boto42,cuadro2.getMatriz(),0,1,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),0,1,1,0,resultados);
     }//GEN-LAST:event_boto42ActionPerformed
 
     private void boto52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto52ActionPerformed
-juego.coordenada(boto52,cuadro2.getMatriz(),1,1,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),1,1,1,0,resultados);
     }//GEN-LAST:event_boto52ActionPerformed
 
     private void boto62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto62ActionPerformed
-juego.coordenada(boto62,cuadro2.getMatriz(),2,1,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),2,1,1,0,resultados);
     }//GEN-LAST:event_boto62ActionPerformed
 
     private void boto72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto72ActionPerformed
-juego.coordenada(boto72,cuadro2.getMatriz(),0 ,2,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),0 ,2,1,0,resultados);
     }//GEN-LAST:event_boto72ActionPerformed
 
     private void boto82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto82ActionPerformed
-juego.coordenada(boto82,cuadro2.getMatriz(),1,2,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),1,2,1,0,resultados);
     }//GEN-LAST:event_boto82ActionPerformed
 
     private void boto92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto92ActionPerformed
-juego.coordenada(boto92,cuadro2.getMatriz(),2,2,1,0,resultados);
+juego.coordenada(cuadro2.getMatriz(),2,2,1,0,resultados);
     }//GEN-LAST:event_boto92ActionPerformed
 
     private void boto23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto23ActionPerformed
-juego.coordenada(boto23,cuadro3.getMatriz(),1,0,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),1,0,2,0,resultados);
     }//GEN-LAST:event_boto23ActionPerformed
 
     private void boto33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto33ActionPerformed
-juego.coordenada(boto33,cuadro3.getMatriz(),2,0,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),2,0,2,0,resultados);
     }//GEN-LAST:event_boto33ActionPerformed
 
     private void boto43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto43ActionPerformed
-juego.coordenada(boto43,cuadro3.getMatriz(),0,1,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),0,1,2,0,resultados);
     }//GEN-LAST:event_boto43ActionPerformed
 
     private void boto53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto53ActionPerformed
-juego.coordenada(boto53,cuadro3.getMatriz(),1,1,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),1,1,2,0,resultados);
     }//GEN-LAST:event_boto53ActionPerformed
 
     private void boto63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto63ActionPerformed
-juego.coordenada(boto63,cuadro3.getMatriz(),2,1,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),2,1,2,0,resultados);
     }//GEN-LAST:event_boto63ActionPerformed
 
     private void boto73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto73ActionPerformed
-juego.coordenada(boto73,cuadro3.getMatriz(),0,2,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),0,2,2,0,resultados);
     }//GEN-LAST:event_boto73ActionPerformed
 
     private void boto83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto83ActionPerformed
-juego.coordenada(boto83,cuadro3.getMatriz(),1,2,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),1,2,2,0,resultados);
     }//GEN-LAST:event_boto83ActionPerformed
 
     private void boto93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto93ActionPerformed
-juego.coordenada(boto93,cuadro3.getMatriz(),2,2,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),2,2,2,0,resultados);
     }//GEN-LAST:event_boto93ActionPerformed
 
     private void boto13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto13ActionPerformed
-juego.coordenada(boto13,cuadro3.getMatriz(),0,0,2,0,resultados);
+juego.coordenada(cuadro3.getMatriz(),0,0,2,0,resultados);
     }//GEN-LAST:event_boto13ActionPerformed
 
     private void boto24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto24ActionPerformed
-juego.coordenada(boto24,cuadro4.getMatriz(),1,0,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),1,0,0,1,resultados);
     }//GEN-LAST:event_boto24ActionPerformed
 
     private void boto34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto34ActionPerformed
-juego.coordenada(boto34,cuadro4.getMatriz(),2,0,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),2,0,0,1,resultados);
     }//GEN-LAST:event_boto34ActionPerformed
 
     private void boto44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto44ActionPerformed
-juego.coordenada(boto44,cuadro4.getMatriz(),0,1,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),0,1,0,1,resultados);
     }//GEN-LAST:event_boto44ActionPerformed
 
     private void boto54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto54ActionPerformed
-juego.coordenada(boto54,cuadro4.getMatriz(),1,1,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),1,1,0,1,resultados);
     }//GEN-LAST:event_boto54ActionPerformed
 
     private void boto64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto64ActionPerformed
-juego.coordenada(boto64,cuadro4.getMatriz(),2,1,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),2,1,0,1,resultados);
     }//GEN-LAST:event_boto64ActionPerformed
 
     private void boto74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto74ActionPerformed
-juego.coordenada(boto74,cuadro4.getMatriz(),0,2,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),0,2,0,1,resultados);
     }//GEN-LAST:event_boto74ActionPerformed
 
     private void boto84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto84ActionPerformed
-juego.coordenada(boto84,cuadro4.getMatriz(),1,2,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),1,2,0,1,resultados);
     }//GEN-LAST:event_boto84ActionPerformed
 
     private void boto94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto94ActionPerformed
-juego.coordenada(boto94,cuadro4.getMatriz(),2,2,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),2,2,0,1,resultados);
     }//GEN-LAST:event_boto94ActionPerformed
 
     private void boto14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto14ActionPerformed
-juego.coordenada(boto14,cuadro4.getMatriz(),0,0,0,1,resultados);
+juego.coordenada(cuadro4.getMatriz(),0,0,0,1,resultados);
     }//GEN-LAST:event_boto14ActionPerformed
 
     private void boto75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto75ActionPerformed
-juego.coordenada(boto75,cuadro5.getMatriz(),0,2,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),0,2,1,1,resultados);
     }//GEN-LAST:event_boto75ActionPerformed
 
     private void boto85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto85ActionPerformed
-juego.coordenada(boto85,cuadro5.getMatriz(),1,2,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),1,2,1,1,resultados);
     }//GEN-LAST:event_boto85ActionPerformed
 
     private void boto95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto95ActionPerformed
-juego.coordenada(boto95,cuadro5.getMatriz(),2,2,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),2,2,1,1,resultados);
     }//GEN-LAST:event_boto95ActionPerformed
 
     private void boto15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto15ActionPerformed
-juego.coordenada(boto15,cuadro5.getMatriz(),0,0,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),0,0,1,1,resultados);
     }//GEN-LAST:event_boto15ActionPerformed
 
     private void boto25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto25ActionPerformed
-juego.coordenada(boto25,cuadro5.getMatriz(),1,0,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),1,0,1,1,resultados);
     }//GEN-LAST:event_boto25ActionPerformed
 
     private void boto35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto35ActionPerformed
-juego.coordenada(boto35,cuadro5.getMatriz(),2,0,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),2,0,1,1,resultados);
     }//GEN-LAST:event_boto35ActionPerformed
 
     private void boto45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto45ActionPerformed
-juego.coordenada(boto45,cuadro5.getMatriz(),0,1,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),0,1,1,1,resultados);
     }//GEN-LAST:event_boto45ActionPerformed
 
     private void boto55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto55ActionPerformed
-juego.coordenada(boto55,cuadro5.getMatriz(),1,1,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),1,1,1,1,resultados);
     }//GEN-LAST:event_boto55ActionPerformed
 
     private void boto65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto65ActionPerformed
-juego.coordenada(boto65,cuadro5.getMatriz(),2,1,1,1,resultados);
+juego.coordenada(cuadro5.getMatriz(),2,1,1,1,resultados);
     }//GEN-LAST:event_boto65ActionPerformed
 
     private void boto66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto66ActionPerformed
-juego.coordenada(boto66,cuadro6.getMatriz(),2,1,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),2,1,2,1,resultados);
     }//GEN-LAST:event_boto66ActionPerformed
 
     private void boto76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto76ActionPerformed
-juego.coordenada(boto76,cuadro6.getMatriz(),0,2,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),0,2,2,1,resultados);
     }//GEN-LAST:event_boto76ActionPerformed
 
     private void boto86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto86ActionPerformed
-juego.coordenada(boto86,cuadro6.getMatriz(),1,2,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),1,2,2,1,resultados);
     }//GEN-LAST:event_boto86ActionPerformed
 
     private void boto96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto96ActionPerformed
-juego.coordenada(boto96,cuadro6.getMatriz(),2,2,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),2,2,2,1,resultados);
     }//GEN-LAST:event_boto96ActionPerformed
 
     private void boto16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto16ActionPerformed
-juego.coordenada(boto16,cuadro6.getMatriz(),0,0,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),0,0,2,1,resultados);
     }//GEN-LAST:event_boto16ActionPerformed
 
     private void boto26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto26ActionPerformed
-juego.coordenada(boto26,cuadro6.getMatriz(),1,0,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),1,0,2,1,resultados);
     }//GEN-LAST:event_boto26ActionPerformed
 
     private void boto36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto36ActionPerformed
-juego.coordenada(boto36,cuadro6.getMatriz(),2,0,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),2,0,2,1,resultados);
     }//GEN-LAST:event_boto36ActionPerformed
 
     private void boto46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto46ActionPerformed
-juego.coordenada(boto46,cuadro6.getMatriz(),0,1,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),0,1,2,1,resultados);
     }//GEN-LAST:event_boto46ActionPerformed
 
     private void boto56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto56ActionPerformed
-juego.coordenada(boto56,cuadro6.getMatriz(),1,1,2,1,resultados);
+juego.coordenada(cuadro6.getMatriz(),1,1,2,1,resultados);
     }//GEN-LAST:event_boto56ActionPerformed
 
     private void boto67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto67ActionPerformed
-juego.coordenada(boto67,cuadro7.getMatriz(),2,1,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),2,1,0,2,resultados);
     }//GEN-LAST:event_boto67ActionPerformed
 
     private void boto77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto77ActionPerformed
-juego.coordenada(boto77,cuadro7.getMatriz(),0,2,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),0,2,0,2,resultados);
     }//GEN-LAST:event_boto77ActionPerformed
 
     private void boto87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto87ActionPerformed
-juego.coordenada(boto87,cuadro7.getMatriz(),1,2,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),1,2,0,2,resultados);
     }//GEN-LAST:event_boto87ActionPerformed
 
     private void boto97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto97ActionPerformed
-juego.coordenada(boto97,cuadro7.getMatriz(),2,2,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),2,2,0,2,resultados);
     }//GEN-LAST:event_boto97ActionPerformed
 
     private void boto17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto17ActionPerformed
-juego.coordenada(boto17,cuadro7.getMatriz(),0,0,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),0,0,0,2,resultados);
     }//GEN-LAST:event_boto17ActionPerformed
 
     private void boto27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto27ActionPerformed
-juego.coordenada(boto27,cuadro7.getMatriz(),1,0,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),1,0,0,2,resultados);
     }//GEN-LAST:event_boto27ActionPerformed
 
     private void boto37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto37ActionPerformed
-juego.coordenada(boto37,cuadro7.getMatriz(),2,0,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),2,0,0,2,resultados);
     }//GEN-LAST:event_boto37ActionPerformed
 
     private void boto47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto47ActionPerformed
-juego.coordenada(boto47,cuadro7.getMatriz(),0,1,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),0,1,0,2,resultados);
     }//GEN-LAST:event_boto47ActionPerformed
 
     private void boto57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto57ActionPerformed
-juego.coordenada(boto57,cuadro7.getMatriz(),1,1,0,2,resultados);
+juego.coordenada(cuadro7.getMatriz(),1,1,0,2,resultados);
     }//GEN-LAST:event_boto57ActionPerformed
 
     private void boto68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto68ActionPerformed
-juego.coordenada(boto68,cuadro8.getMatriz(),2,1,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),2,1,1,2,resultados);
     }//GEN-LAST:event_boto68ActionPerformed
 
     private void boto78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto78ActionPerformed
-juego.coordenada(boto78,cuadro8.getMatriz(),0,2,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),0,2,1,2,resultados);
     }//GEN-LAST:event_boto78ActionPerformed
 
     private void boto88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto88ActionPerformed
-juego.coordenada(boto88,cuadro8.getMatriz(),1,2,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),1,2,1,2,resultados);
     }//GEN-LAST:event_boto88ActionPerformed
 
     private void boto98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto98ActionPerformed
-juego.coordenada(boto98,cuadro8.getMatriz(),2,2,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),2,2,1,2,resultados);
     }//GEN-LAST:event_boto98ActionPerformed
 
     private void boto18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto18ActionPerformed
-juego.coordenada(boto18,cuadro8.getMatriz(),0,0,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),0,0,1,2,resultados);
     }//GEN-LAST:event_boto18ActionPerformed
 
     private void boto28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto28ActionPerformed
-juego.coordenada(boto28,cuadro8.getMatriz(),1,0,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),1,0,1,2,resultados);
     }//GEN-LAST:event_boto28ActionPerformed
 
     private void boto38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto38ActionPerformed
-juego.coordenada(boto38,cuadro8.getMatriz(),2,0,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),2,0,1,2,resultados);
     }//GEN-LAST:event_boto38ActionPerformed
 
     private void boto48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto48ActionPerformed
-juego.coordenada(boto48,cuadro8.getMatriz(),0,1,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),0,1,1,2,resultados);
     }//GEN-LAST:event_boto48ActionPerformed
 
     private void boto58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto58ActionPerformed
-juego.coordenada(boto58,cuadro8.getMatriz(),1,1,1,2,resultados);
+juego.coordenada(cuadro8.getMatriz(),1,1,1,2,resultados);
     }//GEN-LAST:event_boto58ActionPerformed
 
     private void boto69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto69ActionPerformed
-juego.coordenada(boto69,cuadro9.getMatriz(),2,1,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),2,1,2,2,resultados);
     }//GEN-LAST:event_boto69ActionPerformed
 
     private void boto79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto79ActionPerformed
-juego.coordenada(boto79,cuadro9.getMatriz(),0,2,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),0,2,2,2,resultados);
     }//GEN-LAST:event_boto79ActionPerformed
 
     private void boto89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto89ActionPerformed
-juego.coordenada(boto89,cuadro9.getMatriz(),1,2,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),1,2,2,2,resultados);
     }//GEN-LAST:event_boto89ActionPerformed
 
     private void boto99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto99ActionPerformed
-juego.coordenada(boto99,cuadro9.getMatriz(),2,2,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),2,2,2,2,resultados);
     }//GEN-LAST:event_boto99ActionPerformed
 
     private void boto19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto19ActionPerformed
-juego.coordenada(boto19,cuadro9.getMatriz(),0,0,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),0,0,2,2,resultados);
     }//GEN-LAST:event_boto19ActionPerformed
 
     private void boto29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto29ActionPerformed
-juego.coordenada(boto29,cuadro9.getMatriz(),1,0,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),1,0,2,2,resultados);
     }//GEN-LAST:event_boto29ActionPerformed
 
     private void boto39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto39ActionPerformed
-juego.coordenada(boto39,cuadro9.getMatriz(),2,0,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),2,0,2,2,resultados);
     }//GEN-LAST:event_boto39ActionPerformed
 
     private void boto49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto49ActionPerformed
-juego.coordenada(boto49,cuadro9.getMatriz(),0,1,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),0,1,2,2,resultados);
     }//GEN-LAST:event_boto49ActionPerformed
 
     private void boto59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto59ActionPerformed
-juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
+juego.coordenada(cuadro9.getMatriz(),1,1,2,2,resultados);
     }//GEN-LAST:event_boto59ActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -1639,7 +1673,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boto1;
+    private javax.swing.JButton boto11;
     private javax.swing.JButton boto12;
     private javax.swing.JButton boto13;
     private javax.swing.JButton boto14;
@@ -1648,7 +1682,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto17;
     private javax.swing.JButton boto18;
     private javax.swing.JButton boto19;
-    private javax.swing.JButton boto2;
+    private javax.swing.JButton boto21;
     private javax.swing.JButton boto22;
     private javax.swing.JButton boto23;
     private javax.swing.JButton boto24;
@@ -1657,7 +1691,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto27;
     private javax.swing.JButton boto28;
     private javax.swing.JButton boto29;
-    private javax.swing.JButton boto3;
+    private javax.swing.JButton boto31;
     private javax.swing.JButton boto32;
     private javax.swing.JButton boto33;
     private javax.swing.JButton boto34;
@@ -1666,7 +1700,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto37;
     private javax.swing.JButton boto38;
     private javax.swing.JButton boto39;
-    private javax.swing.JButton boto4;
+    private javax.swing.JButton boto41;
     private javax.swing.JButton boto42;
     private javax.swing.JButton boto43;
     private javax.swing.JButton boto44;
@@ -1675,7 +1709,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto47;
     private javax.swing.JButton boto48;
     private javax.swing.JButton boto49;
-    private javax.swing.JButton boto5;
+    private javax.swing.JButton boto51;
     private javax.swing.JButton boto52;
     private javax.swing.JButton boto53;
     private javax.swing.JButton boto54;
@@ -1684,7 +1718,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto57;
     private javax.swing.JButton boto58;
     private javax.swing.JButton boto59;
-    private javax.swing.JButton boto6;
+    private javax.swing.JButton boto61;
     private javax.swing.JButton boto62;
     private javax.swing.JButton boto63;
     private javax.swing.JButton boto64;
@@ -1693,7 +1727,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto67;
     private javax.swing.JButton boto68;
     private javax.swing.JButton boto69;
-    private javax.swing.JButton boto7;
+    private javax.swing.JButton boto71;
     private javax.swing.JButton boto72;
     private javax.swing.JButton boto73;
     private javax.swing.JButton boto74;
@@ -1702,7 +1736,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto77;
     private javax.swing.JButton boto78;
     private javax.swing.JButton boto79;
-    private javax.swing.JButton boto8;
+    private javax.swing.JButton boto81;
     private javax.swing.JButton boto82;
     private javax.swing.JButton boto83;
     private javax.swing.JButton boto84;
@@ -1711,7 +1745,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton boto87;
     private javax.swing.JButton boto88;
     private javax.swing.JButton boto89;
-    private javax.swing.JButton boto9;
+    private javax.swing.JButton boto91;
     private javax.swing.JButton boto92;
     private javax.swing.JButton boto93;
     private javax.swing.JButton boto94;
@@ -1723,6 +1757,7 @@ juego.coordenada(boto59,cuadro9.getMatriz(),1,1,2,2,resultados);
     private javax.swing.JButton cargar;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton reinicioboton;
     public javax.swing.JLabel resultados;
