@@ -4,6 +4,8 @@ package tictac;
 import java.awt.Color;
 import java.util.Random;
 
+
+
 public class gatotebot{
 //ATRIBUTOS--------------------------------------------------------------------------------------
             //Componentes del juego:
@@ -50,14 +52,17 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
     if (matriz[x][y] == 0) {
         if (turno) {
             matriz[x][y] = 1;
-            button.setBackground(Color.RED);
-            turno = !turno;
+            color_boton = Color.RED;
+        } else {
+            matriz[x][y] = 2;
+            color_boton = Color.BLUE; 
         }
+        button.setBackground(color_boton);
+        turno = !turno;
 
         // Llamada de otros métodos.
         verificacion(resultados);
     }
-    
 }
 
  
@@ -91,9 +96,24 @@ public void coordenada(javax.swing.JButton button, int[][] matriz, int x, int y,
             return true;}
         return false;
     }
+    
+    
+    
+    
+    
+    
+    //Datos aleatorios para la jugada del bot:
+   public int[] generarCoordenadasAleatorias() {
+        Random rand = new Random();
+        int fila, columna;
+
+        do {
+            fila = rand.nextInt(3);
+            columna = rand.nextInt(3);
+        } while (gran_matriz[fila][columna].getMatriz()[0][0] != 0);
+
+        return new int[]{fila, columna};
+    }
+   
+   
 }
-    
-    
-    
-
-

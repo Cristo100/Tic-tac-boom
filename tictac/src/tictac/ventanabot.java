@@ -1247,7 +1247,27 @@ public class ventanabot extends javax.swing.JFrame {
     }//GEN-LAST:event_salirbotonActionPerformed
 
     private void boto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto1ActionPerformed
-juego.coordenada(boto1,cuadro1.getMatriz(),0,0,0,0,resultados);
+    juego.coordenada(boto1, cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+
+    // Verifica si es el turno del bot y ejecuta coordenada aleatoria
+    while (!juego.turno && !juego.juego_ganado) {
+        int[] coordenadasAleatorias = juego.generarCoordenadasAleatorias();
+        int fila = coordenadasAleatorias[0];
+        int columna = coordenadasAleatorias[1];
+
+        // Genera el nombre del botón aleatorio
+        String nombreBotonAleatorio = "boto" + (fila * 3 + columna + 1); // +1 para evitar cero
+
+        // Encuentra el botón correspondiente usando reflection
+        try {
+            java.lang.reflect.Field field = getClass().getDeclaredField(nombreBotonAleatorio);
+            JButton botonAleatorio = (JButton) field.get(this);
+
+            juego.coordenada(botonAleatorio, cuadro1.getMatriz(), fila, columna, 0, 0, resultados);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
     }//GEN-LAST:event_boto1ActionPerformed
 
     private void boto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto2ActionPerformed
