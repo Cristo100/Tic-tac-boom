@@ -58,15 +58,20 @@ Para que la implementacion de guardar y cargar el juego sea exitosa, se importar
 ### Guardar:
 Dentro de la ventana, se creó el método cargaEstado(),  guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creó un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
 
-###Cargar:
+### Cargar:
 Dentro de la ventana, se creó el método cargaEstado(), este carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
 <br><br>
 De momento el guardar y cargar funcionan exitosamente a excepcion de la modificacion del color de los botones dentro del juego, se puede ver que existe un registro tras cargar en las matrices donde ya hubo un ganador e intentar hacer una jugada sobre ellos.
 
 
+# Entrega 3 (29/11/23):
 
+Entre el contenido que se debia completar es la modificacion de las propiedades de los botones respecto al contenido de la gran matriz. Al inicio los botones tenian el metodo coordenadas que permitia dicho boton ser modificado, pero al momento de cargar una partida no se presionaba ningun boton para identificar que propiedad cambiar (se podria decir que los botones estaban conectado)
 
+Para corregir esto se modifico el metodo coordenadas para que no se genere un cambio de color en la matriz mencionada (de hecho se retiro toda variable relacionada a color dentro de esta clase) y se crearon 2 nuevos metodos dentro de ventana.
 
+## COLORES
+###
 
 
 
