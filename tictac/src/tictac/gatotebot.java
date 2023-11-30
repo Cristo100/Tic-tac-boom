@@ -56,9 +56,34 @@ public void coordenada(int[][] matriz, int x, int y, int gany, int ganx, javax.s
             matriz[x][y] = 2;
         }
         turno = !turno;
-
         // Llamada de otros métodos.
         verificacion(resultados);
+    }
+}
+
+public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados){
+    while(!turno){
+    if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
+    if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
+    
+    //Randomizador de movimientos:
+    Random rand = new Random();
+        x = rand.nextInt(3); // Numeros del 0 al 2
+        y = rand.nextInt(3);
+        
+    if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
+    if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
+     //Caso de estar disponible el gato:
+    if (matriz[x][y] == 0) {
+        if (turno) {
+            matriz[x][y] = 1;
+        } else {
+            matriz[x][y] = 2;
+        }
+        turno = !turno;
+        // Llamada de otros métodos.
+        verificacion(resultados);
+    }
     }
 }
 
