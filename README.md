@@ -71,8 +71,23 @@ Entre el contenido que se debia completar es la modificacion de las propiedades 
 Para corregir esto se modifico el metodo coordenadas para que no se genere un cambio de color en la matriz mencionada (de hecho se retiro toda variable relacionada a color dentro de esta clase) y se crearon 2 nuevos metodos dentro de ventana.
 
 ## COLORES
-###
+### actualizarColorBoton(int btn, int valor):
+Este metodo se encarga de crear un numero y trabajar con una variable de valor, similar a coordenadas este utiliza la logica de que si valor es igual a uno este se pinta de rojo y si es 2 se pinta de azul. De igual manera que en el metodo de guardado, se uso la biblioteca relacionada a campos para crear tener el grupo de botones con los que se trabajaran en orden.
 
+### actualizarColorBoton(int btn, int valor):
+Para que actualizarColorBoton() inspeccione cada posible opcion de jugada que se ha hecho en el programa, se hizo un ciclo con contadores relacionado a la gran matriz, con el ciclo hecho en el que se obtienen los 3 en raya mas pequeños (matrizCuadro). Se repite de la misma forma con los pequeños para poder darle a valor el numero que corresponde con la matriz (int valor = matrizCuadro[l][k];) para finalmente llamarlo con el metodo descrito previamente.<br>
+
+
+## Contra la computadora:
+Para darle la opcion al usuario sobre que modo elejir, se creo una nueva ventana con esas dos opciones. haciendo visible el modo que elijio. Si el modo que elijio es contra la computadora, se habre "ventanabot" que a diferencia de la ventana comun en este se cambio la clase del objeto a "juego = new gatotebot();" <br> <br>
+
+La clase gatotebot tiene la diferencia de que existe un metodo llamado "coordenadabot", que tiene el mismo proposito que coordenadas comun pero lo hace dentro de un while que hace repetir este movimiento hasta que el turno sea verdadero otra vez (esto es debido a que si marca dentro de una casilla ya ocupada no pasaria nada, por lo que se repite hasta que se haga el cambio de turno) para que el bot haga jugadas diferentes se utilizo la biblioteca "java.util.Random" para cambiar las variables X e Y entre el 0 y el 2 (limites dentro de un juego de 3 en linea) y haga una jugada comun. <br> <br>
+
+De esa forma cada boton dentro de ventanabot tiene los metodos coordenadas() y coordenadabot() junto al metodo de actualizar los colores.  <br>  <br>
+
+Entre las cosas que tenemos planeado modificar es la opcion del bot para jugar dentro de otras matrices, que al momento de triunfar en un juego gatito la computadora aun hace un movimiento dentro de esa matriz (aun asi marca como ganador al original) 
+
+Esto se podria evitar si se escriben "if (juego_ganado == true){return;} if (matriz_ganadora[ganx][gany] != 0) {return;}", pero el metodo coordenadabot intentaria hacer jugadas infinitamentes dentro de una matriz que no esta permitido jugar (por eso de momento esta comentado)
 
 
 
