@@ -73,6 +73,8 @@ public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, java
         
     if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
     if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
+    
+    
      //Caso de estar disponible el gato:
     if (matriz[x][y] == 0) {
         if (turno) {
