@@ -71,8 +71,8 @@ public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, java
         x = rand.nextInt(3); // Numeros del 0 al 2
         y = rand.nextInt(3);
         
-    if (juego_ganado == true){return;} //impide seguir jugando despues de ganar.
-    if (matriz_ganadora[ganx][gany] != 0) {return;}//impide seguir jugando en una matriz victoriosa.
+    //if (juego_ganado == true){return;}                        //impide seguir jugando despues de ganar.
+    //if (matriz_ganadora[ganx][gany] != 0) {return;}   //impide seguir jugando en una matriz victoriosa.
     
     
      //Caso de estar disponible el gato:

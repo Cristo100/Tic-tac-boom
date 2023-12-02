@@ -50,6 +50,7 @@ for (int i = 0; i < juego.gran_matriz.length; i++) {
             v = v+1;
             gatito cuadro = juego.gran_matriz[i][j];
             int[][] matrizCuadro = cuadro.getMatriz();
+            
             int s = 0;
             for (int k = 0; k < matrizCuadro.length; k++) {
                 for (int l = 0; l < matrizCuadro[k].length; l++) {
