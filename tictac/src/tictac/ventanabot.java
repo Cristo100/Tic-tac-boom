@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ventanabot extends javax.swing.JFrame {
@@ -75,6 +76,33 @@ private void actualizarColorBoton(int btn, int valor) {
     } catch (NoSuchFieldException | IllegalAccessException e) {
         e.printStackTrace();
     }
+}
+//Randomizador:
+public void randomizador() {
+      Random numerorand = new Random();
+      while(!juego.turno){
+            int numero = numerorand.nextInt(8);
+            if(numero==0){
+                juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados); return;
+            } else if(numero==1){
+                juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==2){
+                juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==3){
+                juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==4){
+                juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==5){
+                juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==6){
+                juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==7){
+                juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);return;
+            } else if(numero==8){
+                juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);return;
+            }
+            return;
+    }  
 }
 
 //OPCIONES DENTRO DE LA PAGINA:
@@ -1292,55 +1320,55 @@ private void actualizarColorBoton(int btn, int valor) {
 
     private void boto11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto11ActionPerformed
     juego.coordenada(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+    randomizador();
     actualizarColoresBotones();
     }//GEN-LAST:event_boto11ActionPerformed
 
     private void boto21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto21ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),1,0,0,0,resultados);                                       
-juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto21ActionPerformed
 
     private void boto31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto31ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),2,0,0,0,resultados);                                       
-juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto31ActionPerformed
 
     private void boto41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto41ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),0,1,0,0,resultados);                                       
-juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto41ActionPerformed
 
     private void boto51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto51ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),1,1,0,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto51ActionPerformed
 
     private void boto61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto61ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),2,1,0,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto61ActionPerformed
 
     private void boto71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto71ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),0,2,0,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto71ActionPerformed
 
     private void boto81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto81ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),1,2,0,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto81ActionPerformed
 
     private void boto91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto91ActionPerformed
 juego.coordenada(cuadro1.getMatriz(),2,2,0,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto91ActionPerformed
 
@@ -1355,433 +1383,433 @@ actualizarColoresBotones();
 
     private void boto12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto12ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),0,0,1,0, resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto12ActionPerformed
 
     private void boto22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto22ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),1,0,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto22ActionPerformed
 
     private void boto32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto32ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),2,0,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto32ActionPerformed
 
     private void boto42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto42ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),0,1,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto42ActionPerformed
 
     private void boto52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto52ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),1,1,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto52ActionPerformed
 
     private void boto62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto62ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),2,1,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto62ActionPerformed
 
     private void boto72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto72ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),0 ,2,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto72ActionPerformed
 
     private void boto82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto82ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),1,2,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto82ActionPerformed
 
     private void boto92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto92ActionPerformed
 juego.coordenada(cuadro2.getMatriz(),2,2,1,0,resultados);                                       
-    juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto92ActionPerformed
 
     private void boto23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto23ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),1,0,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto23ActionPerformed
 
     private void boto33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto33ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),2,0,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto33ActionPerformed
 
     private void boto43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto43ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),0,1,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto43ActionPerformed
 
     private void boto53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto53ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),1,1,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto53ActionPerformed
 
     private void boto63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto63ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),2,1,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto63ActionPerformed
 
     private void boto73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto73ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),0,2,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto73ActionPerformed
 
     private void boto83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto83ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),1,2,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto83ActionPerformed
 
     private void boto93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto93ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),2,2,2,0,resultados);                                       
-    juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto93ActionPerformed
 
     private void boto13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto13ActionPerformed
 juego.coordenada(cuadro3.getMatriz(),0,0,2,0,resultados);                                       
-    juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto13ActionPerformed
 
     private void boto24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto24ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),1,0,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto24ActionPerformed
 
     private void boto34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto34ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),2,0,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto34ActionPerformed
 
     private void boto44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto44ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),0,1,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto44ActionPerformed
 
     private void boto54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto54ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),1,1,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto54ActionPerformed
 
     private void boto64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto64ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),2,1,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto64ActionPerformed
 
     private void boto74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto74ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),0,2,0,1,resultados);
-    juego.coordenadabot(cuadro4.getMatriz(),0,2,0,1,resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto74ActionPerformed
 
     private void boto84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto84ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),1,2,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto84ActionPerformed
 
     private void boto94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto94ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),2,2,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto94ActionPerformed
 
     private void boto14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto14ActionPerformed
 juego.coordenada(cuadro4.getMatriz(),0,0,0,1,resultados);                                       
-    juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto14ActionPerformed
 
     private void boto75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto75ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),0,2,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto75ActionPerformed
 
     private void boto85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto85ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),1,2,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto85ActionPerformed
 
     private void boto95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto95ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),2,2,1,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto95ActionPerformed
 
     private void boto15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto15ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),0,0,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto15ActionPerformed
 
     private void boto25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto25ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),1,0,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto25ActionPerformed
 
     private void boto35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto35ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),2,0,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto35ActionPerformed
 
     private void boto45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto45ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),0,1,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto45ActionPerformed
 
     private void boto55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto55ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),1,1,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto55ActionPerformed
 
     private void boto65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto65ActionPerformed
 juego.coordenada(cuadro5.getMatriz(),2,1,1,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto65ActionPerformed
 
     private void boto66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto66ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),2,1,2,1,resultados);                                       
-    juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto66ActionPerformed
 
     private void boto76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto76ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),0,2,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto76ActionPerformed
 
     private void boto86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto86ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),1,2,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto86ActionPerformed
 
     private void boto96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto96ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),2,2,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto96ActionPerformed
 
     private void boto16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto16ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),0,0,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto16ActionPerformed
 
     private void boto26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto26ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),1,0,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto26ActionPerformed
 
     private void boto36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto36ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),2,0,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto36ActionPerformed
 
     private void boto46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto46ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),0,1,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto46ActionPerformed
 
     private void boto56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto56ActionPerformed
 juego.coordenada(cuadro6.getMatriz(),1,1,2,1,resultados);                                       
-    juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto56ActionPerformed
 
     private void boto67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto67ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),2,1,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto67ActionPerformed
 
     private void boto77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto77ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),0,2,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto77ActionPerformed
 
     private void boto87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto87ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),1,2,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto87ActionPerformed
 
     private void boto97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto97ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),2,2,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto97ActionPerformed
 
     private void boto17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto17ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),0,0,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto17ActionPerformed
 
     private void boto27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto27ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),1,0,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto27ActionPerformed
 
     private void boto37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto37ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),2,0,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto37ActionPerformed
 
     private void boto47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto47ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),0,1,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto47ActionPerformed
 
     private void boto57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto57ActionPerformed
 juego.coordenada(cuadro7.getMatriz(),1,1,0,2,resultados);                                       
-    juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto57ActionPerformed
 
     private void boto68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto68ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),2,1,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto68ActionPerformed
 
     private void boto78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto78ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),0,2,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto78ActionPerformed
 
     private void boto88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto88ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),1,2,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto88ActionPerformed
 
     private void boto98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto98ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),2,2,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto98ActionPerformed
 
     private void boto18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto18ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),0,0,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto18ActionPerformed
 
     private void boto28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto28ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),1,0,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto28ActionPerformed
 
     private void boto38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto38ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),2,0,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto38ActionPerformed
 
     private void boto48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto48ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),0,1,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto48ActionPerformed
 
     private void boto58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto58ActionPerformed
 juego.coordenada(cuadro8.getMatriz(),1,1,1,2,resultados);                                       
-    juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto58ActionPerformed
 
     private void boto69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto69ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),2,1,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto69ActionPerformed
 
     private void boto79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto79ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),0,2,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto79ActionPerformed
 
     private void boto89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto89ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),1,2,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto89ActionPerformed
 
     private void boto99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto99ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),2,2,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto99ActionPerformed
 
     private void boto19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto19ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),0,0,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto19ActionPerformed
 
     private void boto29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto29ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),1,0,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto29ActionPerformed
 
     private void boto39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto39ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),2,0,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto39ActionPerformed
 
     private void boto49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto49ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),0,1,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto49ActionPerformed
 
     private void boto59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto59ActionPerformed
 juego.coordenada(cuadro9.getMatriz(),1,1,2,2,resultados);                                       
-    juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);
+randomizador();
 actualizarColoresBotones();
     }//GEN-LAST:event_boto59ActionPerformed
 
