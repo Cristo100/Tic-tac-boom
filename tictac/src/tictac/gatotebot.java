@@ -4,7 +4,6 @@ package tictac;
 import java.awt.Color;
 import java.util.Random;
 
-
 public class gatotebot{
 //ATRIBUTOS:
                     boolean turno;
@@ -38,8 +37,6 @@ public class gatotebot{
                         return gran_matriz[fila][columna];
                     }
 
-
-
  //COORDENADAS: Por cada boton.
     public void coordenada(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados) {
         if (juego_ganado == true){return;}                              //impide seguir jugando despues de ganar.
@@ -53,7 +50,6 @@ public class gatotebot{
             verificacion(resultados);                                       //Ver si se gano con la jugada:
         }
     }
-
     
 //Coordenadabot: turno de la computadora, aleatorio.
 public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados){
@@ -76,12 +72,7 @@ public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, java
 }
 
 
-
-
-
 //VERIFICACIONES:
-
-
  public void verificacion(javax.swing.JLabel resultados) {
     for (int i = 0; i < gran_matriz.length; i++) {                          //Verificacion de ganador en solo un cuadro (ciclos de filas y columnas)
         for (int j = 0; j < gran_matriz[i].length; j++) {
