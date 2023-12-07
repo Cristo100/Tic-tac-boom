@@ -90,9 +90,46 @@ Entre las cosas que tenemos planeado modificar es la opcion del bot para jugar d
 Esto se podria evitar si se escriben "if (juego_ganado == true){return;} if (matriz_ganadora[ganx][gany] != 0) {return;}", pero el metodo coordenadabot intentaria hacer jugadas infinitamentes dentro de una matriz que no esta permitido jugar (por eso de momento esta comentado)
 
 
+# Entrega 4 (6/12/23):
+##Afinando detalles:
+
+Para finalizar detalles respecto al codigo, se realizo una expansion respecto a las opciones de la computadora tras la jugada de un jugador, esto se hizo con un metodo llamado Randomizador() el cual hace un numero del 1 al 9, mientras que la variable turno sea falsa dependiendo del numero que salga se ejecutara el metodo coordenadabot con el numero del cuadro correspondiente al numero aleatorio, de esa forma se jugara incluso fuera de un juego de gato individual a otro de los 8 juegos disponibles hasta que marque una jugada legitima.obviamente se modifico los eventos de los botones para que todos tengan el metodo Randomizador en lugar de coordenadabot (porque randomizador ya llama a coordenadabot) <br> <br>
+
+*Problematica:* <br>
+El concepto original de este randomizador era identificando la ubicacion del cuadro dentro de la matriz "gran_matriz" (como se muestra en codigo de abajo), pero al ejecutarlo existian problemas de forma aleatoria (de vez en cuando sin avisar podias jugar por 1 turno como el azul y luego seguir jugando comunmente). Logramos neutralizar parte del problema haciendo que las variables gany/ganx dentro de cada coordanadabot sea 0. Esto causa problemas unicamente con el cuadro1 por alguna razon desconocida, pero deja en paz al resto de matrices. <br>
+
+*Idea original:*<br>
+public void randomizador() {
+      Random numerorand = new Random();
+            int numero = numerorand.nextInt(8)+1;
+            if(numero==1){
+                juego.coordenadabot(cuadro1.getMatriz(), 0, 0, resultados); return;
+            } else if(numero==2){
+                juego.coordenadabot(cuadro2.getMatriz(), 0, 1, resultados);return;
+            } else if(numero==3){
+                juego.coordenadabot(cuadro3.getMatriz(), 0, 2, resultados);return;
+            } else if(numero==4){
+                juego.coordenadabot(cuadro4.getMatriz(), 1, 0, resultados);return;
+            } else if(numero==5){
+                juego.coordenadabot(cuadro5.getMatriz(), 1, 1, resultados);return;
+            } else if(numero==6){
+                juego.coordenadabot(cuadro6.getMatriz(), 1, 2, resultados);return;
+            } else if(numero==7){
+                juego.coordenadabot(cuadro7.getMatriz(), 2, 0, resultados);return;
+            } else if(numero==8){
+                juego.coordenadabot(cuadro8.getMatriz(), 2, 1, resultados);return;
+            } else if(numero==9){
+                juego.coordenadabot(cuadro9.getMatriz(), 2, 2, resultados);return;
+    }  
+}
 
 
 
+Para mejorar el orden de clases y que gatote no este sobrecargado, se decidio mover el metodo verifica_ganador hacia gatito, ya que puede funcionar perfectamente dentro de los parametros de un juego de gato 3x3 individual, y para volver a llamarlo en gatote o gatotebot dependiendo el caso. Para eso se traslado dicho metodo hacia la clase gatito y se cambio la manera de cuidar el metodo de private a protected, esto con el fin de poder usarlo nuevamente en gatote y gatotebot usando una extension hacia gatito. <br>
 
 
-
+## Con estos cambios se tendria hecho:
+1-jframe para mostrar las opciones y jugadas de los jugadores. <br>
+2-Clases, matrices y metodos para marcar las jugadas tanto en la matriz como en los eventos del jframework.
+3-Sistema de guardado y cargado incluso cuando se cierra el programa.
+4-opcion de pelear contra la computadora.
