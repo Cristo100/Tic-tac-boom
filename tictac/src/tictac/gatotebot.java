@@ -4,7 +4,7 @@ package tictac;
 import java.awt.Color;
 import java.util.Random;
 
-public class gatotebot{
+public class gatotebot extends gatito{
 //ATRIBUTOS:
                     boolean turno;
                     Color color_boton;
@@ -39,6 +39,7 @@ public class gatotebot{
 
  //COORDENADAS: Por cada boton.
     public void coordenada(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados) {
+        
         if (juego_ganado == true){return;}                              //impide seguir jugando despues de ganar.
         if (matriz_ganadora[ganx][gany] != 0) {return;}         //impide seguir jugando en una matriz victoriosa.
 
@@ -52,19 +53,22 @@ public class gatotebot{
     }
     
 //Coordenadabot: turno de la computadora, aleatorio.
-public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, javax.swing.JLabel resultados){
+public void coordenadabot(int[][] matriz, int gany, int ganx, javax.swing.JLabel resultados){
     while(!turno){                                                              //repeticion hasta que haga una jugada disponible:
     Random rand = new Random();                                 //Randomizador de movimientos:
-        x = rand.nextInt(3); // Numeros del 0 al 2
-        y = rand.nextInt(3);
+        int x = rand.nextInt(3);                                // Numeros del 0 al 2
+        int y = rand.nextInt(3);
+        
+        
         
         //Lo mismo que coordenadas, pero con el turno en falso:
     if (juego_ganado == true){return;}
     if (matriz_ganadora[ganx][gany] != 0) {return;}
     
-    if (matriz[x][y] == 0) {
+    if(matriz[x][y] == 0) {
         if (turno) {matriz[x][y] = 1;
-        } else      {matriz[x][y] = 2;}
+        } else      {matriz[x][y] = 2;
+        }
         turno = !turno;
         verificacion(resultados);
     }
@@ -88,28 +92,4 @@ public void coordenadabot(int[][] matriz, int x, int y, int gany, int ganx, java
         resultados.setText("-JUGANDO-");
     }
 }
-
-// Ganador de cualquier matriz 3x3:
-    private boolean verifica_ganador(int[][] matriz) {
-        for (int i = 0; i < 3; i++) { //Verticales
-            if (matriz[i][0] == matriz[i][1] && matriz[i][1] == matriz[i][2] && matriz[i][0] != 0) {
-                return true;}
-            if (matriz[0][i] == matriz[1][i] && matriz[1][i] == matriz[2][i] && matriz[0][i] != 0) {
-                return true;}
-        }               //Diagonales
-        if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != 0) {
-            return true;}
-        if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != 0) {
-            return true;}
-        return false;
-    }
-    
-    
-    
-    
-    
-    
-
-   
-   
 }

@@ -80,28 +80,25 @@ private void actualizarColorBoton(int btn, int valor) {
 //Randomizador:
 public void randomizador() {
       Random numerorand = new Random();
-      while(!juego.turno){
-            int numero = numerorand.nextInt(8);
-            if(numero==0){
-                juego.coordenadabot(cuadro1.getMatriz(), 0, 0, 0, 0, resultados); return;
-            } else if(numero==1){
-                juego.coordenadabot(cuadro2.getMatriz(), 0, 0, 0, 0, resultados);return;
+            int numero = numerorand.nextInt(8)+1;
+            if(numero==1){
+                juego.coordenadabot(cuadro1.getMatriz(), 0, 0, resultados); return;
             } else if(numero==2){
-                juego.coordenadabot(cuadro3.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro2.getMatriz(), 0, 1, resultados);return;
             } else if(numero==3){
-                juego.coordenadabot(cuadro4.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro3.getMatriz(), 0, 2, resultados);return;
             } else if(numero==4){
-                juego.coordenadabot(cuadro5.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro4.getMatriz(), 1, 0, resultados);return;
             } else if(numero==5){
-                juego.coordenadabot(cuadro6.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro5.getMatriz(), 1, 1, resultados);return;
             } else if(numero==6){
-                juego.coordenadabot(cuadro7.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro6.getMatriz(), 1, 2, resultados);return;
             } else if(numero==7){
-                juego.coordenadabot(cuadro8.getMatriz(), 0, 0, 0, 0, resultados);return;
+                juego.coordenadabot(cuadro7.getMatriz(), 2, 0, resultados);return;
             } else if(numero==8){
-                juego.coordenadabot(cuadro9.getMatriz(), 0, 0, 0, 0, resultados);return;
-            }
-            return;
+                juego.coordenadabot(cuadro8.getMatriz(), 2, 1, resultados);return;
+            } else if(numero==9){
+                juego.coordenadabot(cuadro9.getMatriz(), 2, 2, resultados);return;
     }  
 }
 
