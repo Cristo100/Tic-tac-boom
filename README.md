@@ -44,7 +44,7 @@ Con un 3 en raya ya funcional, se implementó el uso de clases como en el diseñ
 ### Nuevas Bibliotecas:
 Para que la implementacion de guardar y cargar el juego sea exitosa, se importaron nuevas bibliotecas.
 <br>
-**java.io.File:** Manipular información sobre archivos y directorios en el sistema de archivos.
+**java.io.File:** manipular información sobre archivos y directorios en el sistema de archivos.
 <br>
 **java.io.FileWriter:** Escribir caracteres en un archivo.
 <br>
@@ -58,7 +58,78 @@ Para que la implementacion de guardar y cargar el juego sea exitosa, se importar
 ### Guardar:
 Dentro de la ventana, se creó el método cargaEstado(),  guarda el turno actual y el estado de cada cuadro del juego en un archivo de texto. Utiliza una matriz bidimensional (3x3) para representar el estado de cada cuadro, donde cada posición indica si la casilla está vacía, ocupada por el jugador 1 o el jugador 2, u otro estado relevante. La información se estructura para facilitar la recuperación y reanudación del juego desde el estado guardado. Igual se creó un botón invoca el método guardarEstado para guardar el estado actual del juego en un archivo llamado "guardado.txt".
 
-###Cargar:
+### Cargar:
 Dentro de la ventana, se creó el método cargaEstado(), este carga el estado previamente guardado del juego desde el archivo de texto. Lee la información almacenada, actualiza el turno y la matriz de cada cuadro en la matriz bidimensional gran_matriz. Después, actualiza la interfaz gráfica y fuerza su actualización.
 <br><br>
 De momento el guardar y cargar funcionan exitosamente a excepcion de la modificacion del color de los botones dentro del juego, se puede ver que existe un registro tras cargar en las matrices donde ya hubo un ganador e intentar hacer una jugada sobre ellos.
+
+
+# Entrega 3 (29/11/23):
+
+Entre el contenido que se debia completar es la modificacion de las propiedades de los botones respecto al contenido de la gran matriz. Al inicio los botones tenian el metodo coordenadas que permitia dicho boton ser modificado, pero al momento de cargar una partida no se presionaba ningun boton para identificar que propiedad cambiar (se podria decir que los botones estaban conectado)
+
+Para corregir esto se modifico el metodo coordenadas para que no se genere un cambio de color en la matriz mencionada (de hecho se retiro toda variable relacionada a color dentro de esta clase) y se crearon 2 nuevos metodos dentro de ventana.
+
+## COLORES
+### actualizarColorBoton(int btn, int valor):
+Este metodo se encarga de crear un numero y trabajar con una variable de valor, similar a coordenadas este utiliza la logica de que si valor es igual a uno este se pinta de rojo y si es 2 se pinta de azul. De igual manera que en el metodo de guardado, se uso la biblioteca relacionada a campos para crear tener el grupo de botones con los que se trabajaran en orden.
+
+### actualizarColorBoton(int btn, int valor):
+Para que actualizarColorBoton() inspeccione cada posible opcion de jugada que se ha hecho en el programa, se hizo un ciclo con contadores relacionado a la gran matriz, con el ciclo hecho en el que se obtienen los 3 en raya mas pequeños (matrizCuadro). Se repite de la misma forma con los pequeños para poder darle a valor el numero que corresponde con la matriz (int valor = matrizCuadro[l][k];) para finalmente llamarlo con el metodo descrito previamente.<br>
+
+
+## Contra la computadora:
+Para darle la opcion al usuario sobre que modo elejir, se creo una nueva ventana con esas dos opciones. haciendo visible el modo que elijio. Si el modo que elijio es contra la computadora, se habre "ventanabot" que a diferencia de la ventana comun en este se cambio la clase del objeto a "juego = new gatotebot();" <br> <br>
+
+La clase gatotebot tiene la diferencia de que existe un metodo llamado "coordenadabot", que tiene el mismo proposito que coordenadas comun pero lo hace dentro de un while que hace repetir este movimiento hasta que el turno sea verdadero otra vez (esto es debido a que si marca dentro de una casilla ya ocupada no pasaria nada, por lo que se repite hasta que se haga el cambio de turno) para que el bot haga jugadas diferentes se utilizo la biblioteca "java.util.Random" para cambiar las variables X e Y entre el 0 y el 2 (limites dentro de un juego de 3 en linea) y haga una jugada comun. <br> <br>
+
+De esa forma cada boton dentro de ventanabot tiene los metodos coordenadas() y coordenadabot() junto al metodo de actualizar los colores.  <br>  <br>
+
+Entre las cosas que tenemos planeado modificar es la opcion del bot para jugar dentro de otras matrices, que al momento de triunfar en un juego gatito la computadora aun hace un movimiento dentro de esa matriz (aun asi marca como ganador al original) 
+
+Esto se podria evitar si se escriben "if (juego_ganado == true){return;} if (matriz_ganadora[ganx][gany] != 0) {return;}", pero el metodo coordenadabot intentaria hacer jugadas infinitamentes dentro de una matriz que no esta permitido jugar (por eso de momento esta comentado)
+
+
+# Entrega 4 (6/12/23):
+## Afinando detalles:
+
+Para finalizar detalles respecto al codigo, se realizo una expansion respecto a las opciones de la computadora tras la jugada de un jugador, esto se hizo con un metodo llamado Randomizador() el cual hace un numero del 1 al 9, mientras que la variable turno sea falsa dependiendo del numero que salga se ejecutara el metodo coordenadabot con el numero del cuadro correspondiente al numero aleatorio, de esa forma se jugara incluso fuera de un juego de gato individual a otro de los 8 juegos disponibles hasta que marque una jugada legitima.obviamente se modifico los eventos de los botones para que todos tengan el metodo Randomizador en lugar de coordenadabot (porque randomizador ya llama a coordenadabot) <br> <br>
+
+### Problematica:
+El concepto original de este randomizador era identificando la ubicacion del cuadro dentro de la matriz "gran_matriz" (como se muestra en codigo de abajo), pero al ejecutarlo existian problemas de forma aleatoria (de vez en cuando sin avisar podias jugar por 1 turno como el azul y luego seguir jugando comunmente). Logramos neutralizar parte del problema haciendo que las variables gany/ganx dentro de cada coordanadabot sea 0. Esto causa problemas unicamente con el cuadro1 por alguna razon desconocida, pero deja en paz al resto de matrices. <br>
+
+*Idea original:*<br>
+public void randomizador() {
+      Random numerorand = new Random();
+            int numero = numerorand.nextInt(8)+1;
+            if(numero==1){
+                juego.coordenadabot(cuadro1.getMatriz(), 0, 0, resultados); return;
+            } else if(numero==2){
+                juego.coordenadabot(cuadro2.getMatriz(), 0, 1, resultados);return;
+            } else if(numero==3){
+                juego.coordenadabot(cuadro3.getMatriz(), 0, 2, resultados);return;
+            } else if(numero==4){
+                juego.coordenadabot(cuadro4.getMatriz(), 1, 0, resultados);return;
+            } else if(numero==5){
+                juego.coordenadabot(cuadro5.getMatriz(), 1, 1, resultados);return;
+            } else if(numero==6){
+                juego.coordenadabot(cuadro6.getMatriz(), 1, 2, resultados);return;
+            } else if(numero==7){
+                juego.coordenadabot(cuadro7.getMatriz(), 2, 0, resultados);return;
+            } else if(numero==8){
+                juego.coordenadabot(cuadro8.getMatriz(), 2, 1, resultados);return;
+            } else if(numero==9){
+                juego.coordenadabot(cuadro9.getMatriz(), 2, 2, resultados);return;
+    }  
+}
+
+
+
+Para mejorar el orden de clases y que gatote no este sobrecargado, se decidio mover el metodo verifica_ganador hacia gatito, ya que puede funcionar perfectamente dentro de los parametros de un juego de gato 3x3 individual, y para volver a llamarlo en gatote o gatotebot dependiendo el caso. Para eso se traslado dicho metodo hacia la clase gatito y se cambio la manera de cuidar el metodo de private a protected, esto con el fin de poder usarlo nuevamente en gatote y gatotebot usando una extension hacia gatito. <br>
+
+
+## Con estos cambios se tendria hecho:
+1-jframe para mostrar las opciones y jugadas de los jugadores. <br>
+2-Clases, matrices y metodos para marcar las jugadas tanto en la matriz como en los eventos del jframework.<br>
+3-Sistema de guardado y cargado incluso cuando se cierra el programa.<br>
+4-opcion de pelear contra la computadora.<br>
